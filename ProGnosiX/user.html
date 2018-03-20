@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Affordable and professional web design">
+	  <meta name="keywords" content="web design, affordable web design, professional web design">
+  	<meta name="author" content="Brad Traversy">
+    <title>ProGnosiX | Profil</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1>The <span class="highlight">ProGnosiX</span> game</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Acasă</a></li>
+            <li class="current"><a href="user.html">Profil</a></li>
+            <li><a href="grades.html">Punctaje</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div id="w">
+      <div id="content" class="clearfix">
+        <h1>Profil student</h1>
+
+        <nav id="profiletabs">
+          <ul>
+            <li><a href="#settings" class="sel">Informații</a></li>
+            <li><a href="#activity">Activitate</a></li>
+            <li><a href="#subjects">Materii</a></li>
+          </ul>
+        </nav>
+
+        <section id="settings">
+          <p class="setting"><span>Nume</span> Ionescu</p>
+
+          <p class="setting"><span>Prenume</span> Marian</p>
+
+          <p class="setting"><span>E-mail </span> marian.ionescu@info.uaic.ro</p>
+
+          <p class="setting"><span>Anul</span> II</p>
+
+          <p class="setting"><span>Semestrul </span> II</p>
+
+          <p class="setting"><span>Grupa </span> A4</p>
+
+        </section>
+
+        <section id="activity" class="hidden">
+
+          <p class="activity">19.03 - Prognoză Ingineria Programarii - Punctaj final: 7</p>
+
+          <p class="activity">10.03 - Prognoză Limba engleză - Nota finala: 10</p>
+
+          <p class="activity">09.03 - Prognoză Practică SGBD - Punctaj final: 8</p>
+
+        </section>
+
+        <section id="subjects" class="hidden">
+
+          <p id="web" class="subjects">Tehnologii web</p>
+
+          <p id="ingp" class="subjects">Ingineria Programarii</p>
+
+          <p id="java" class="subjects">Programare avansată</p>
+
+          <p id="sgbd" class="subjects" >Practică SGBD</p>
+
+          <p id="engleza" class="subjects">Limba engleză</p>
+
+          <p id="matlab" class="subjects">Modele continue si Matlab</p>
+        </section>
+      </div>
+    </div>
+
+      <div id="simpleModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+              <span class="closeBtn">&times;</span>
+              <h2>Practică SGBD</h2>
+          </div>
+          <div class="modal-body">
+            <p>Autoevaluare Test 1</p>
+            <input type="number" name="quantity" min="0" max="10" step="any" value="0">
+            <input type="number" name="quantity" min="0.00" max="0.99" step="0.01" value="0">
+            <button type="submit" class="button_2">Trimite</button>
+          </div>
+        </div>
+      </div>
+
+
+      <script type="text/javascript" src="js/main.js"></script>
+
+
+        <script type="text/javascript">
+        $(function(){
+          $('#profiletabs ul li a').on('click', function(e){
+            e.preventDefault();
+            var newcontent = $(this).attr('href');
+
+            $('#profiletabs ul li a').removeClass('sel');
+            $(this).addClass('sel');
+
+            $('#content section').each(function(){
+              if(!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
+            });
+
+            $(newcontent).removeClass('hidden');
+          });
+        });
+        </script>
+
+    <footer>
+      <p>The ProGnosiX Game, Copyright &copy; 2018</p>
+    </footer>
+
+  </body>
+</html>
