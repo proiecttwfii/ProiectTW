@@ -3,12 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <meta name="description" content="Affordable and professional web design">
-	  <meta name="keywords" content="web design, affordable web design, professional web design">
-  	<meta name="author" content="Brad Traversy">
+    <meta name="description" content="ProGnosiX - Autoevaluare">
+	  <meta name="keywords" content="fii, info iasi, game">
+  	<meta name="author" content="Acasandrei Beatrice, Simion Cosmin">
     <title>ProGnosiX | Profil</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 
   </head>
   <body>
@@ -33,10 +32,10 @@
         <h1>Profil student</h1>
 
         <nav id="profiletabs">
-          <ul>
-            <li><a href="#settings" class="sel">Informații</a></li>
-            <li><a href="#activity">Activitate</a></li>
-            <li><a href="#subjects">Materii</a></li>
+          <ul id="list">
+            <li><a href="#settings" id="li0" class="sel">Informații</a></li>
+            <li><a href="#activity" id="li1">Activitate</a></li>
+            <li><a href="#subjects" id="li2">Materii</a></li>
           </ul>
         </nav>
 
@@ -97,27 +96,57 @@
         </div>
       </div>
 
+      <script>
+        var items = document.querySelectorAll("#list li"),
+        tab = [], index;
+        var subjects = document.getElementById("subjects");
+        var settings = document.getElementById("settings");
+        var activity = document.getElementById("activity");
+        var li0 = document.getElementById("li0");
+        var li1 = document.getElementById("li1");
+        var li2 = document.getElementById("li2");
+          // add values to the array
+          for(var i = 0; i < items.length; i++){
+             tab.push(items[i].innerHTML);
+           }
+          // get selected element index
+          for(var i = 0; i < items.length; i++)
+          {
+              items[i].onclick = function(){
+                 index = tab.indexOf(this.innerHTML);
+                  console.log(this.innerHTML + " Index = " + index);
+                  if (index == 0)
+                  {
+                    li0.classList.add("sel");
+                    li1.classList.remove("sel");
+                    li2.classList.remove("sel");
+                    settings.classList.remove("hidden");
+                    activity.classList.add("hidden");
+                    subjects.classList.add("hidden");
+                  }
+                   else if (index == 1)
+                  {
+                    li0.classList.remove("sel");
+                    li1.classList.add("sel");
+                    li2.classList.remove("sel");
+                    settings.classList.add("hidden");
+                    activity.classList.remove("hidden");
+                    subjects.classList.add("hidden");
+                  }
+                  else if (index == 2)
+                  {
+                    li0.classList.remove("sel");
+                    li1.classList.remove("sel");
+                    li2.classList.add("sel");
+                    settings.classList.add("hidden");
+                    activity.classList.add("hidden");
+                    subjects.classList.remove("hidden");
+                  }
+              };
+          }
+        </script>
 
       <script type="text/javascript" src="js/main.js"></script>
-
-
-        <script type="text/javascript">
-        $(function(){
-          $('#profiletabs ul li a').on('click', function(e){
-            e.preventDefault();
-            var newcontent = $(this).attr('href');
-
-            $('#profiletabs ul li a').removeClass('sel');
-            $(this).addClass('sel');
-
-            $('#content section').each(function(){
-              if(!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
-            });
-
-            $(newcontent).removeClass('hidden');
-          });
-        });
-        </script>
 
     <footer>
       <p>The ProGnosiX Game, Copyright &copy; 2018</p>
