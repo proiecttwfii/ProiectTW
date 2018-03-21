@@ -315,14 +315,14 @@ section {
   text-align: center;
 }
 
-#modalButton{
+.modalButton{
   color:#ccc;
   float: right;
   font-size:30px;
   color:#fff;
 }
 
-#modalButton:hover, #modalButton:focus{
+.modalButton:hover, .modalButton:focus{
   color:#000;
   text-decoration: none;
   cursor:pointer;
@@ -384,56 +384,58 @@ html[xmlns] .clearfix { display: block; }
     margin-bottom:5px;
   }
 }
-table#usersTable{
+.adminTable{
     width:100%;
+    border-spacing: 0px;
+    border-collapse: separate;
 }
-table#usersTable th{
+.adminTable th{
   height: 30px;
 }
-table#usersTable th:first-of-type{
+.adminTable th:first-of-type{
   border-top-left-radius: 10px;
 }
-table#usersTable th:last-of-type{
+.adminTable th:last-of-type{
   border-top-right-radius: 10px;
 }
-table#usersTable th,
-table#usersTable td {
+.adminTable th,
+.adminTable td {
     padding: 15px;
     text-align: left;
 }
-table#usersTable tr {
+.adminTable tr {
   line-height: 10px;
 }
-table#usersTable tr:nth-child(even) {
+.adminTable tr:nth-child(even) {
     background-color: #eee;
 }
-table#usersTable tr:nth-child(odd) {
+.adminTable tr:nth-child(odd) {
    background-color: #fff;
 }
-table#usersTable th {
+.adminTable th {
     background-color: #35424a;
     color: white;
 }
-table#usersTable tr > td:first-of-type
+.adminTable tr > td:first-of-type
 {
   border-left: 1px solid #35424a;
 }
-table#usersTable tr > td:last-of-type{
+.adminTable tr > td:last-of-type{
   background:url(../img/delete.png) no-repeat;
   background-position: center;
   border-right: 1px solid #35424a;
 }
-table#usersTable tr:last-child
+.adminTable tr:last-child
 {
   border-bottom: 1px solid #35424a;
 }
 
-table#usersTable tr > td:last-of-type:hover
+.adminTable tr > td:last-of-type:hover
 {
   background:url(../img/delete_hover.png) no-repeat;
   background-position: center;
 }
-button#addUserBtn
+.addUserBtn
 {
   width:100%;
   height: 40px;
@@ -447,7 +449,7 @@ button#addUserBtn
   font-weight: bold;
   outline: 0;
 }
-button#addUserBtn:hover{
+.addUserBtn:hover{
   background-color: #556977;
 }
 

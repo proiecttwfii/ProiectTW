@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>ProGnosiX | Profil</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/main.js"></script>
   </head>
   <body>
     <header>
@@ -29,7 +29,7 @@
 
         <section id="users">
           <div style="overflow-x:auto;">
-            <table id="usersTable" class="adminTable" cellspacing="0">
+            <table class="adminTable">
               <tr>
                 <th>Nume</th>
                 <th>An</th>
@@ -108,13 +108,13 @@
                 <td></td>
               </tr>
             </table>
-            <button type="button" id="addUserBtn" onclick="addUser()">Add user</button>
+            <button type="button" class="addUserBtn" onclick="addUser()">Add user</button>
           </div>
         </section>
 
         <section id="rounds" class="hidden">
           <div style="overflow-x:auto;">
-            <table id="usersTable" cellspacing="0">
+            <table class="adminTable">
               <tr>
                 <th>Materie</th>
                 <th>Nota la</th>
@@ -158,7 +158,7 @@
                 <td></td>
               </tr>
             </table>
-            <button type="button" id="addUserBtn" onclick="addRound()">Create new round
+            <button type="button" class="addUserBtn" onclick="addRound()">Create new round
             </button>
           </div>
         </section>
@@ -169,7 +169,7 @@
     <div id="addRoundDialog" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-            <span onclick="document.getElementById('addRoundDialog').style.display='none'" class="closeBtnRound" id="modalButton">&times;</span>
+            <span onclick="document.getElementById('addRoundDialog').style.display='none'" class="modalButton">&times;</span>
             <h2>Adauga o runda noua</h2>
         </div>
         <div class="modal-body">
@@ -197,7 +197,7 @@
     <div id="addUserDialog" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-            <span onclick="document.getElementById('addUserDialog').style.display='none'" class="closeBtnUser" id="modalButton">&times;</span>
+            <span onclick="document.getElementById('addUserDialog').style.display='none'" class="modalButton">&times;</span>
             <h2>Adauga utilizator nou</h2>
         </div>
         <div class="modal-body">
@@ -245,7 +245,7 @@
 
 
 
-        <script type="text/javascript">
+        <script>
 
         function addRound(){
           document.getElementById('addRoundDialog').style.display='block';
