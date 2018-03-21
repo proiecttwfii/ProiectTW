@@ -163,12 +163,12 @@ ul#services li{
 }
 
 footer{
-  padding:20px;
+  padding:0px;
   margin-top:20px;
   color:#ffffff;
   background-color:#45aaf2;
   text-align: center;
-  position: absolute;
+  position: fixed;
   bottom:0;
   left:0;
   right:0;
@@ -210,8 +210,8 @@ a{
   height: 50px;
 }
 
-#profiletabs ul { list-style: none; display: block; width: 70%; height: 50px; position: relative; left: 30%;}
-#profiletabls ul li { float: left; position: relative;}
+#profiletabs ul { list-style: none; display: block; width: 100%; height: 50px; position: relative;}
+#profiletabs ul li { float: left; position: relative;}
 #profiletabs ul li a {
   display: block;
   float: left;
@@ -315,14 +315,14 @@ section {
   text-align: center;
 }
 
-.closeBtn{
+#modalButton{
   color:#ccc;
   float: right;
   font-size:30px;
   color:#fff;
 }
 
-.closeBtn:hover, .closeBtn:focus{
+#modalButton:hover, #modalButton:focus{
   color:#000;
   text-decoration: none;
   cursor:pointer;
@@ -383,4 +383,74 @@ html[xmlns] .clearfix { display: block; }
     width:100%;
     margin-bottom:5px;
   }
+}
+table#usersTable{
+    width:100%;
+}
+table#usersTable th{
+  height: 30px;
+}
+table#usersTable th:first-of-type{
+  border-top-left-radius: 10px;
+}
+table#usersTable th:last-of-type{
+  border-top-right-radius: 10px;
+}
+table#usersTable th,
+table#usersTable td {
+    padding: 15px;
+    text-align: left;
+}
+table#usersTable tr {
+  line-height: 10px;
+}
+table#usersTable tr:nth-child(even) {
+    background-color: #eee;
+}
+table#usersTable tr:nth-child(odd) {
+   background-color: #fff;
+}
+table#usersTable th {
+    background-color: #35424a;
+    color: white;
+}
+table#usersTable tr > td:first-of-type
+{
+  border-left: 1px solid #35424a;
+}
+table#usersTable tr > td:last-of-type{
+  background:url(../img/delete.png) no-repeat;
+  background-position: center;
+  border-right: 1px solid #35424a;
+}
+table#usersTable tr:last-child
+{
+  border-bottom: 1px solid #35424a;
+}
+
+table#usersTable tr > td:last-of-type:hover
+{
+  background:url(../img/delete_hover.png) no-repeat;
+  background-position: center;
+}
+button#addUserBtn
+{
+  width:100%;
+  height: 40px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: none;
+  background-color: #35424a;
+  color: #fff;
+  text-align: left;
+  padding-left: 15px;
+  font-weight: bold;
+  outline: 0;
+}
+button#addUserBtn:hover{
+  background-color: #556977;
+}
+
+#addUserDialog{
+  width:100%;
 }
