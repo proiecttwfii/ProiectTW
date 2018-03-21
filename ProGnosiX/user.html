@@ -68,7 +68,7 @@
 
           <p id="web" class="subjects">Tehnologii web</p>
 
-          <p id="ingp" class="subjects">Ingineria Programarii</p>
+          <p id="ingineriaprogramarii" class="subjects">Ingineria Programarii</p>
 
           <p id="java" class="subjects">Programare avansată</p>
 
@@ -106,6 +106,7 @@
         var li1 = document.getElementById("li1");
         var li2 = document.getElementById("li2");
           // add values to the array
+          tab = [], index;
           for(var i = 0; i < items.length; i++){
              tab.push(items[i].innerHTML);
            }
@@ -115,16 +116,8 @@
               items[i].onclick = function(){
                  index = tab.indexOf(this.innerHTML);
                   console.log(this.innerHTML + " Index = " + index);
-                  if (index == 0)
-                  {
-                    li0.classList.add("sel");
-                    li1.classList.remove("sel");
-                    li2.classList.remove("sel");
-                    settings.classList.remove("hidden");
-                    activity.classList.add("hidden");
-                    subjects.classList.add("hidden");
-                  }
-                   else if (index == 1)
+                  var aux = index;
+                    if (aux == 1)
                   {
                     li0.classList.remove("sel");
                     li1.classList.add("sel");
@@ -132,8 +125,27 @@
                     settings.classList.add("hidden");
                     activity.classList.remove("hidden");
                     subjects.classList.add("hidden");
+                    tab = [], index;
+                    for(var i = 0; i < items.length; i++){
+                       tab.push(items[i].innerHTML);
+                       console.log(items[i].innerHTML);
+                     }
                   }
-                  else if (index == 2)
+                  else if (aux == 0)
+                  {
+                    li0.classList.add("sel");
+                    li1.classList.remove("sel");
+                    li2.classList.remove("sel");
+                    settings.classList.remove("hidden");
+                    activity.classList.add("hidden");
+                    subjects.classList.add("hidden");
+                    tab = [], index;
+                    for(var i = 0; i < items.length; i++){
+                       tab.push(items[i].innerHTML);
+                       console.log(items[i].innerHTML);
+                     }
+                  }
+                  else if (aux == 2)
                   {
                     li0.classList.remove("sel");
                     li1.classList.remove("sel");
@@ -141,6 +153,11 @@
                     settings.classList.add("hidden");
                     activity.classList.add("hidden");
                     subjects.classList.remove("hidden");
+                    tab = [], index;
+                    for(var i = 0; i < items.length; i++){
+                       tab.push(items[i].innerHTML);
+                       console.log(items[i].innerHTML);
+                     }
                   }
               };
           }
