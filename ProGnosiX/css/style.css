@@ -110,8 +110,8 @@ header a:hover{
   font-size:20px;
 }
 
-/* Newsletter */
-#newsletter{
+/* logging */
+#logging{
   padding:15px;
   color:#ffffff;
   border-bottom:#45aaf2 3px solid;
@@ -119,16 +119,16 @@ header a:hover{
 
 }
 
-#newsletter h1{
+#logging h1{
   float:left;
 }
 
-#newsletter form {
+#logging form {
   float:right;
   margin-top:15px;
 }
 
-#newsletter input[type="email"], input[type="password"]{
+#logging input[type="email"], input[type="password"]{
   padding:4px;
   height:25px;
   width:250px;
@@ -174,10 +174,39 @@ footer{
   right:0;
 }
 
+/* Grades */
+article ul li h3{
+  font-size: 19px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 23px;
+}
+article#main-col-grades{
+  width:65%;
+  position: relative;
+  left: 20%;
+}
+
+ul#services-grades li{
+  text-align: center;
+  list-style: none;
+  padding:20px;
+  border: #cccccc solid 1px;
+  margin-bottom:5px;
+  border-radius: 4px;
+  background:#e6e6e6;
+}
+
 /* User page */
 a{
-  color: #5a9352;
+  color: black;
   text-decoration: none;
+}
+
+a:hover {
+  color: #45aaf2;
 }
 
 #w {
@@ -265,7 +294,7 @@ a{
 }
 
 /* Modal User */
-section {
+section#subjects {
   cursor: pointer;
 }
 
@@ -302,6 +331,12 @@ section {
 
 .modal-body{
   padding:10px 20px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+section p{
+  font-size: 17px;
 }
 
 .modal-body input[type="number"] {
@@ -321,7 +356,18 @@ section {
   font-size:30px;
   color:#fff;
 }
+.closeBtn{
+  color:#ccc;
+  float: right;
+  font-size:30px;
+  color:#fff;
+}
 
+.closeBtn:hover, .closeBtn:focus{
+  color:#000;
+  text-decoration: none;
+  cursor:pointer;
+}
 .modalButton:hover, .modalButton:focus{
   color:#000;
   text-decoration: none;
@@ -345,8 +391,8 @@ html[xmlns] .clearfix { display: block; }
   header #branding,
   header nav,
   header nav li,
-  #newsletter h1,
-  #newsletter form,
+  #logging h1,
+  #logging form,
   #boxes .box,
   article#main-col,
   aside#sidebar,
@@ -374,16 +420,18 @@ html[xmlns] .clearfix { display: block; }
     margin-top:40px;
   }
 
-  #newsletter button, .contact button{
+  #logging button, .contact button{
     display:block;
     width:100%;
   }
 
-  #newsletter form input[type="email"], form input[type="password"], .contact input, .contact textarea{
+  #logging form input[type="email"], form input[type="password"], .contact input, .contact textarea{
     width:100%;
     margin-bottom:5px;
   }
 }
+
+/* Admin*/
 .adminTable{
     width:100%;
     border-spacing: 0px;

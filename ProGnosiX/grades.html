@@ -18,7 +18,6 @@
         <nav>
           <ul>
             <li><a href="index.html">Acasă</a></li>
-            <li><a href="user.html">Profil</a></li>
             <li class="current"><a href="grades.html">Punctaje</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -27,22 +26,22 @@
     </header>
 
 
-    <section id="newsletter">
+    <section id="logging">
       <div class="container">
         <h1>Logare</h1>
         <form>
-          <input type="email" placeholder="Introduceți email-ul">
+          <input type="email" id="username" placeholder="Introduceți email-ul">
           <input type="password" placeholder="Introduceți parola">
-          <button type="submit" class="button_1">Intră în cont</button>
+          <button type="submit" id="login" class="button_1">Intră în cont</button>
         </form>
       </div>
     </section>
 
     <section id="main">
       <div class="container">
-        <article id="main-col">
+        <article id="main-col-grades">
             <h1 class="page-title">Rezultate</h1>
-            <ul id="services">
+            <ul id="services-grades">
               <li>
                 <h3> <a href="date1.pdf" download="rezultate_sgbd">Rezultate SGBD Test 1</a></h3>
               </li>
@@ -57,6 +56,18 @@
               </li>
             </ul>
         </article>
+      </div>
+    </section>
+
+    <script type="text/javascript">
+      document.getElementById("login").onclick = function() {
+        var username = document.getElementById("username").value;
+        if(username == "user")
+          setTimeout('window.location.href="user.html"', 0);
+        else if(username == "admin")
+          setTimeout('window.location.href="admin.html"', 0);
+      };
+    </script>
 
     <footer>
       <p>The ProGnosiX Game, Copyright &copy; 2018</p>
