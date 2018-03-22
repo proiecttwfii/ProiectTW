@@ -1,4 +1,4 @@
-logging<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -38,22 +38,12 @@ logging<!DOCTYPE html>
       <div class="container">
         <h1>Logare</h1>
         <form>
-          <input type="email" id="username" placeholder="Introduceți email-ul">
+          <input type="email" placeholder="Introduceți email-ul">
           <input type="password" placeholder="Introduceți parola">
-          <button type="submit" id="login" class="button_1">Intră în cont</button>
+          <button type="submit" class="button_1">Intră în cont</button>
         </form>
       </div>
     </section>
-
-    <script type="text/javascript">
-      document.getElementById("login").onclick = function() {
-        var username = document.getElementById("username").value;
-        if(username == "user")
-          setTimeout('window.location.href="user.html"', 0);
-        else if(username == "admin")
-          setTimeout('window.location.href="admin.html"', 0);
-      };
-    </script>
 
     <footer>
       <p>The ProGnosiX Game, Copyright &copy; 2018</p>
