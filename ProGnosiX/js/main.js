@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head><title>Json</title>
+<meta charset="UTF-8">
+</head>
+<body>
 // Get modal element
 var modal = document.getElementById('simpleModal');
 // Get open modal button
@@ -28,3 +34,5 @@ function outsideClick(e){
     modal.style.display = 'none';
   }
 }
+</body>
+</html>
