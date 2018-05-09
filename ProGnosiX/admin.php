@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>ProGnosiX | Profil</title>
+    <title>ProGnosiX | Admin</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="js/main.js"></script>
   </head>
@@ -13,6 +13,11 @@
         <div id="branding">
           <h1>The <span class="highlight">ProGnosiX</span> game</h1>
         </div>
+        <nav>
+          <ul>
+            <li><a href="index.php">LOGOUT</a></li>
+          </ul>
+        </nav>
       </div>
     </header>
 
@@ -24,6 +29,8 @@
           <ul id = "admlist">
             <li><a href="#users"  id="adm0" class="sel" >Users</a></li>
             <li><a href="#rounds" id="adm1" >Rounds</a></li>
+            <li><a href="#inbox"  id="adm2" >Inbox</a></li>
+          </ul>
           </ul>
         </nav>
 
@@ -163,6 +170,57 @@
           </div>
         </section>
 
+        <section id="inbox" class="hidden">
+          <div style="overflow-x:auto;">
+            <table class="adminTable">
+              <tr>
+                <th>Sender</th>
+                <th>Date</th>
+                <th>Content</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>IoneSCU@gmail.com</td>
+                <td>23/12/2017</td>
+                <td>In legatura cu ultima runda...</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>gmail@yahoo.com</td>
+                <td>11/11/2018</td>
+                <td>As dori resetarea parolei...</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>gmail@yahoo.com</td>
+                <td>11/11/2018</td>
+                <td>As dori resetarea parolei...</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>gmail@yahoo.com</td>
+                <td>11/11/2018</td>
+                <td>As dori resetarea parolei...</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>gmail@yahoo.com</td>
+                <td>11/11/2018</td>
+                <td>As dori resetarea parolei...</td>
+                <td></td>
+              </tr>
+              <tr>
+              <tr>
+                <td>gmail@yahoo.com</td>
+                <td>11/11/2018</td>
+                <td>As dori resetarea parolei...</td>
+                <td></td>
+              </tr>
+            </table>
+            <button type="button" class="addUserBtn" onclick="clearInbox()">Clear inbox
+            </button>
+          </div>
+        </section>
       </div>
     </div>
 
@@ -259,8 +317,10 @@
         tab = [], index;
         var users = document.getElementById("users");
         var rounds = document.getElementById("rounds");
+        var inbox = document.getElementById("inbox");
         var li0 = document.getElementById("adm0");
         var li1 = document.getElementById("adm1");
+        var li2 = document.getElementById("adm2");
           // add values to the array
           tab = [], index;
           for(var i = 0; i < items.length; i++){
@@ -277,8 +337,10 @@
                   {
                     li0.classList.add("sel");
                     li1.classList.remove("sel");
+                    li2.classList.remove("sel");
                     users.classList.remove("hidden");
                     rounds.classList.add("hidden");
+					inbox.classList.add("hidden");
                     tab = [], index;
                     for(var i = 0; i < items.length; i++){
                        tab.push(items[i].innerHTML);
@@ -289,8 +351,24 @@
                   {
                     li0.classList.remove("sel");
                     li1.classList.add("sel");
+                    li2.classList.remove("sel");
                     users.classList.add("hidden");
                     rounds.classList.remove("hidden");
+                    inbox.classList.add("hidden");
+                    tab = [], index;
+                    for(var i = 0; i < items.length; i++){
+                       tab.push(items[i].innerHTML);
+                       console.log(items[i].innerHTML);
+                     }
+                  }
+                   else if (aux == 2)
+                  {
+                    li0.classList.remove("sel");
+                    li1.classList.remove("sel");
+                    li2.classList.add("sel");
+                    users.classList.add("hidden");
+                    rounds.classList.add("hidden");
+                    inbox.classList.remove("hidden");
                     tab = [], index;
                     for(var i = 0; i < items.length; i++){
                        tab.push(items[i].innerHTML);
