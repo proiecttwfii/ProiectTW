@@ -18,8 +18,6 @@ else { // User exists
     if ( password_verify($_POST['parola'], password_hash($user['parola'], PASSWORD_BCRYPT)) ) {
 
         $_SESSION['email'] = $user['email'];
-
-
         // This is how we'll know the user is logged in
         $_SESSION['logged_in'] = true;
 
@@ -30,6 +28,6 @@ else { // User exists
         echo $_POST['parola'];
         echo $user['parola'];
 
-        header("location: error.php");
+        header("location: index.php");
     }
 }

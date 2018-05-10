@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+require 'db.php';
+session_start();
+?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -18,6 +22,11 @@
         <nav>
           <ul>
             <li><a href="index.php">Acasă</a></li>
+            <!-- <?php
+           if($_SESSION["logged_in"] == 1) {
+               echo '<li><a href="user.php">Profil</a></li>';
+           }
+           ?>  -->
             <li class="current"><a href="grades.php">Punctaje</a></li>
             <li><a href="contact.php">Contact</a></li>
           </ul>

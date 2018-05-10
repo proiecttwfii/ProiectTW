@@ -62,6 +62,12 @@ else {
 
           <p class="setting"><span>Grupa </span> A4</p>
 
+          <nav id="profiletabs">
+            <ul id="list">
+              <li><a href="index.php" id="logout" class="">Logout</a></li>
+            </ul>
+          </nav>
+
         </section>
 
         <section id="activity" class="hidden">
@@ -71,6 +77,12 @@ else {
           <p class="activity">10.03 - Prognoză Limba engleză - Nota finala: 10</p>
 
           <p class="activity">09.03 - Prognoză Practică SGBD - Punctaj final: 8</p>
+
+          <nav id="profiletabs">
+            <ul id="list">
+              <li><a href="index.php" id="logout" class="">Logout</a></li>
+            </ul>
+          </nav>
 
         </section>
 
@@ -87,6 +99,12 @@ else {
           <p id="engleza" class="subjects">Limba engleză</p>
 
           <p id="matlab" class="subjects">Modele continue si Matlab</p>
+
+          <nav id="profiletabs">
+            <ul id="list">
+              <li><a href="index.php" id="logout" class="">Logout</a></li>
+            </ul>
+          </nav>
         </section>
       </div>
     </div>
@@ -99,8 +117,7 @@ else {
           </div>
           <div class="modal-body">
             <p>Autoevaluare Test 1</p>
-            <input type="number" name="quantity" min="0" max="10" step="any" value="0">
-            <input type="number" name="quantity" min="0.00" max="0.99" step="0.01" value="0">
+            <input type="text">
             <button type="submit" class="button_2">Trimite</button>
           </div>
         </div>
