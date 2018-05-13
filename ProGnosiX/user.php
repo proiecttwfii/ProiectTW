@@ -192,13 +192,12 @@ else {
         var modal = document.getElementById('simpleModal');
 
 
-      //while (<?php $i!=0;?>) {
-        // Get open modal button
-        var modalBtn<?php echo $i;?> = document.getElementById('<?php echo $i;?>');
-        // Listen for open click
-        modalBtn<?php echo $i;?>.addEventListener('click', openModal);
-        <?php $i--;?>
-      //}
+        var count = <?php echo $i;?>;
+              while (count > 0) {
+                // Get open modal button
+                document.getElementById(count).addEventListener('click', openModal);
+                count --;
+              }
 
 
         // Get close button

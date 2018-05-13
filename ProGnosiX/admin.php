@@ -73,13 +73,18 @@ session_start();
                 <th>Nr. total participanti</th>
                 <th></th>
               </tr>
-              <tr>
-                <td>IP</td>
-                <td>Tema3</td>
-                <td>1</td>
-                <td>45</td>
-                <td></td>
-              </tr>
+              <?php
+              $results = $mysqli->query("SELECT * FROM runde") or die($mysqli->error());
+               while ($row = $results->fetch_assoc()) {
+                 $id = $row["id_materie"];
+                 $id_runda = $row["id_runda"];
+                 $materii = $mysqli->query("SELECT * FROM materie where id_materie = '$id'");
+                 $materie = $materii->fetch_assoc();
+                 $prognoze_runde = $mysqli->query("SELECT COUNT(id_prognoza) as total FROM prognoze where id_runda = '$id_runda' ");
+                 $count_particip = $prognoze_runde->fetch_assoc();
+                echo "<tr\><td>".$materie["nume_materie"]."</td><td>".$row["nume_runda"]." </td><td>".$materie["an"]."</td><td>".$count_particip["total"]."</td><td></td></tr>";
+              }
+              ?>
 
             </table>
             <button type="button" class="addUserBtn" onclick="addRound()">Create new round
@@ -96,12 +101,13 @@ session_start();
                 <th>Content</th>
                 <th></th>
               </tr>
-              <tr>
-                <td>IoneSCU@gmail.com</td>
-                <td>23/12/2017</td>
-                <td>In legatura cu ultima runda...</td>
-                <td></td>
-              </tr>
+              <?php
+              $results = $mysqli->query("SELECT * FROM inbox") or die($mysqli->error());
+               while ($row = $results->fetch_assoc()) {
+
+                echo "<tr\><td>".$row["email"]."</td><td>".$row["data_mesaj"]." </td><td>".$row["mesaj"]."</td><td></td></tr>";
+              }
+              ?>
 
 
             </table>
