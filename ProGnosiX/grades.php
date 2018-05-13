@@ -22,13 +22,14 @@ session_start();
         <nav>
           <ul>
             <li><a href="index.php">Acasă</a></li>
-            <!-- <?php
-           if($_SESSION["logged_in"] == 1) {
-               echo '<li><a href="user.php">Profil</a></li>';
-           }
-           ?>  -->
-            <li class="current"><a href="grades.php">Punctaje</a></li>
+            <li class="current"><a href="grades.php">Rezultate</a></li>
             <li><a href="contact.php">Contact</a></li>
+            <?php
+                if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1)  {
+                  echo "<li class=\"\"><a href=\"user.php\">Profil</a></li>
+                  <li><a href=\"logout.php\">Logout</a></li>";
+                }
+            ?>
           </ul>
         </nav>
       </div>
@@ -38,10 +39,10 @@ session_start();
     <section id="logging">
       <div class="container">
         <h1>Logare</h1>
-        <form>
-          <input type="email" id="username" placeholder="Introduceți email-ul">
-          <input type="password" placeholder="Introduceți parola">
-          <button type="submit" id="login" class="button_1">Intră în cont</button>
+        <form action="index.php" method="post" autocomplete="on">
+          <input type="email"  name="email" placeholder="Introduceți email-ul">
+          <input type="password" required autocomplete="off" name="parola" placeholder="Introduceți parola">
+          <button class="button_1" name = "login">Intră în cont</button>
         </form>
       </div>
     </section>
@@ -68,15 +69,7 @@ session_start();
       </div>
     </section>
 
-    <script type="text/javascript">
-      document.getElementById("login").onclick = function() {
-        var username = document.getElementById("username").value;
-        if(username == "user")
-          setTimeout('window.location.href="user.php"', 0);
-        else if(username == "admin")
-          setTimeout('window.location.href="admin.php"', 0);
-      };
-    </script>
+
 
     <footer>
       <p>The ProGnosiX Game, Copyright &copy; 2018</p>

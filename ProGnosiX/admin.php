@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+require 'db.php';
+session_start();
+?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -15,7 +19,7 @@
         </div>
         <nav>
           <ul>
-            <li><a href="index.php">LOGOUT</a></li>
+            <li><a href="logout.php">LOGOUT</a></li>
           </ul>
         </nav>
       </div>
@@ -44,76 +48,16 @@
                 <th>Punctaj</th>
                 <th></th>
               </tr>
-              <tr>
-                <td>Jill Smith</td>
-                <td>II</td>
-                <td>A4</td>
-                <td>+3</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Eve</td>
-                <td>II</td>
-                <td>A4</td>
-                <td>+2</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>John</td>
-                <td>II</td>
-                <td>A4</td>
-                <td>-4</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>John</td>
-                <td>II</td>
-                <td>A4</td>
-                <td>+4</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>John</td>
-                <td>II</td>
-                <td>A4</td>
-                <td> 0</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>John</td>
-                <td>II</td>
-                <td>A4</td>
-                <td>-2</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>John</td>
-                <td>II</td>
-                <td>A4</td>
-                <td>+8</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>John</td>
-                <td>II</td>
-                <td>A4</td>
-                <td>+8</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>John</td>
-                <td>II</td>
-                <td>A4</td>
-                <td>-7</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>John</td>
-                <td>II</td>
-                <td>A4</td>
-                <td>-11</td>
-                <td></td>
-              </tr>
+              <?php
+              $results = $mysqli->query("SELECT * FROM prognoze") or die($mysqli->error());
+               while ($row = $results->fetch_assoc()) {
+                 $id = $row["id_student"];
+                 $users = $mysqli->query("SELECT * FROM accounts where id = '$id'");
+                 $user = $users->fetch_assoc();
+                echo "<tr\><td>".$user["nume"]." ".$user["prenume"]."</td><td>".$user["an"]."</td><td>".$user["grupa"]."</td><td>+3</td><td></td></tr>";
+              }
+              ?>
+
             </table>
             <button type="button" class="addUserBtn" onclick="addUser()">Add user</button>
           </div>
@@ -136,34 +80,7 @@
                 <td>45</td>
                 <td></td>
               </tr>
-              <tr>
-                <td>POO</td>
-                <td>Partial</td>
-                <td>2</td>
-                <td>20</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>TW</td>
-                <td>Proiect</td>
-                <td>2</td>
-                <td>-</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>PSGBD</td>
-                <td>Tema1</td>
-                <td>2</td>
-                <td>119</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>TW</td>
-                <td>Proiect</td>
-                <td>2</td>
-                <td>-</td>
-                <td></td>
-              </tr>
+
             </table>
             <button type="button" class="addUserBtn" onclick="addRound()">Create new round
             </button>
@@ -185,37 +102,8 @@
                 <td>In legatura cu ultima runda...</td>
                 <td></td>
               </tr>
-              <tr>
-                <td>gmail@yahoo.com</td>
-                <td>11/11/2018</td>
-                <td>As dori resetarea parolei...</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>gmail@yahoo.com</td>
-                <td>11/11/2018</td>
-                <td>As dori resetarea parolei...</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>gmail@yahoo.com</td>
-                <td>11/11/2018</td>
-                <td>As dori resetarea parolei...</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>gmail@yahoo.com</td>
-                <td>11/11/2018</td>
-                <td>As dori resetarea parolei...</td>
-                <td></td>
-              </tr>
-              <tr>
-              <tr>
-                <td>gmail@yahoo.com</td>
-                <td>11/11/2018</td>
-                <td>As dori resetarea parolei...</td>
-                <td></td>
-              </tr>
+
+
             </table>
             <button type="button" class="addUserBtn" onclick="clearInbox()">Clear inbox
             </button>

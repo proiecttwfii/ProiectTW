@@ -23,9 +23,7 @@ session_start();
       require 'login.php';
     }
   }
-
    ?>
-
   <body>
     <header>
       <div class="container">
@@ -35,8 +33,14 @@ session_start();
         <nav>
           <ul>
             <li class="current"><a href="index.php">Acasă</a></li>
-            <li><a href="grades.php">Punctaje</a></li>
+            <li><a href="grades.php">Rezultate</a></li>
             <li><a href="contact.php">Contact</a></li>
+            <?php
+                if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1)  {
+                  echo "<li class=\"\"><a href=\"user.php\">Profil</a></li>
+                  <li><a href=\"logout.php\">Logout</a></li>";
+                }
+            ?>
           </ul>
         </nav>
       </div>

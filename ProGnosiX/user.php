@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+  require 'db.php';
   session_start();
   if ( $_SESSION['logged_in'] != 1 ) {
   $_SESSION['message'] = "You must log in before viewing your profile page!";
@@ -29,9 +30,10 @@ else {
         <nav>
           <ul>
             <li><a href="index.php">Acasă</a></li>
-            <li class="current"><a href="user.php">Profil</a></li>
-            <li><a href="grades.php">Punctaje</a></li>
+            <li><a href="grades.php">Rezultate</a></li>
             <li><a href="contact.php">Contact</a></li>
+            <li class="current"><a href="user.php">Profil</a></li>
+            <li><a href="logout.php">Logout</a></li>
           </ul>
         </nav>
       </div>
@@ -45,66 +47,61 @@ else {
           <ul id="list">
             <li><a href="#settings" id="li0" class="sel">Informații</a></li>
             <li><a href="#activity" id="li1">Activitate</a></li>
-            <li><a href="#subjects" id="li2">Materii</a></li>
+            <li><a href="#subjects" id="li2">Runde disponibile</a></li>
           </ul>
         </nav>
 
+      <?php
+      $result_info = $mysqli->query("SELECT * FROM accounts WHERE email='$email'") or die($mysqli->error());
+      $user = $result_info->fetch_assoc();
+      $nume =$user['nume'];
+      $prenume = $user['prenume'];
+      $an = $user['an'];
+      $semestru = $user['semestru'];
+      $grupa = $user['grupa'];
+      $id = $user['id'];
+      ?>
         <section id="settings">
-          <p class="setting"><span>Nume</span> Ionescu</p>
+          <p class="setting"><span>Nume</span><?= $nume?></p>
 
-          <p class="setting"><span>Prenume</span> Marian</p>
+          <p class="setting"><span>Prenume</span><?=$prenume?></p>
 
-          <p class="setting"><span>E-mail </span> marian.ionescu@info.uaic.ro</p>
+          <p class="setting"><span>E-mail </span><?= $email ?></p>
 
-          <p class="setting"><span>Anul</span> II</p>
+          <p class="setting"><span>Anul</span> <?= $an ?></p>
 
-          <p class="setting"><span>Semestrul </span> II</p>
+          <p class="setting"><span>Semestrul </span> <?= $semestru?></p>
 
-          <p class="setting"><span>Grupa </span> A4</p>
-
-          <nav id="profiletabs">
-            <ul id="list">
-              <li><a href="index.php" id="logout" class="">Logout</a></li>
-            </ul>
-          </nav>
+          <p class="setting"><span>Grupa </span> <?= $grupa ?></p>
 
         </section>
 
         <section id="activity" class="hidden">
 
-          <p class="activity">19.03 - Prognoză Ingineria Programarii - Punctaj final: 7</p>
-
-          <p class="activity">10.03 - Prognoză Limba engleză - Nota finala: 10</p>
-
-          <p class="activity">09.03 - Prognoză Practică SGBD - Punctaj final: 8</p>
-
-          <nav id="profiletabs">
-            <ul id="list">
-              <li><a href="index.php" id="logout" class="">Logout</a></li>
-            </ul>
-          </nav>
+          <?php
+          $result_activity = $mysqli->query("SELECT * FROM prognoze INNER JOIN accounts ON accounts.id = prognoze.id_student WHERE email = '$email'") or die($mysqli->error());
+           while ($row = $result_activity->fetch_assoc()) {
+             $runde = $mysqli->query("SELECT * FROM runde where id_runda = ".$row["id_runda"]." ");
+             $runda = $runde->fetch_assoc();
+             $materii = $mysqli->query("SELECT * FROM materie where id_materie = ".$runda["id_materie"]." ");
+             $materie = $materii->fetch_assoc();
+             echo "<p class=\"activity\"> ".$row["data_prognoza"]." - Prognoză - ".$materie["nume_materie"]." - ".$runda["nume_runda"]." - Punctaj final: ".$row["prognoza_student"]."</p>";
+          }
+          ?>
 
         </section>
 
         <section id="subjects" class="hidden">
-
-          <p id="sgbd" class="subjects" >Practică SGBD</p>
-
-          <p id="web" class="subjects">Tehnologii web</p>
-
-          <p id="ingineriaprogramarii" class="subjects">Ingineria Programarii</p>
-
-          <p id="java" class="subjects">Programare avansată</p>
-
-          <p id="engleza" class="subjects">Limba engleză</p>
-
-          <p id="matlab" class="subjects">Modele continue si Matlab</p>
-
-          <nav id="profiletabs">
-            <ul id="list">
-              <li><a href="index.php" id="logout" class="">Logout</a></li>
-            </ul>
-          </nav>
+          <?php
+          $result_runde = $mysqli->query("SELECT * FROM runde INNER JOIN materie ON runde.id_materie = materie.id_materie WHERE materie.an = '$an' and materie.semestru = '$semestru'") or die($mysqli->error());
+          $i = 0;
+          while ($row = $result_runde->fetch_assoc()) {
+            $i++;
+             $materii = $mysqli->query("SELECT * FROM materie where id_materie = ".$row["id_materie"]." ");
+             $materie = $materii->fetch_assoc();
+             echo "<p id=\"".$i."\" class=\"subjects\" >".$materie["nume_materie"]." - ".$row["nume_runda"]."</p>";
+          }
+          ?>
         </section>
       </div>
     </div>
@@ -189,17 +186,23 @@ else {
               };
           }
         </script>
-        <script type="text/javascript">
 
+        <script type="text/javascript">
         // Get modal element
         var modal = document.getElementById('simpleModal');
+
+
+      //while (<?php $i!=0;?>) {
         // Get open modal button
-        var modalBtn = document.getElementById('sgbd');
+        var modalBtn<?php echo $i;?> = document.getElementById('<?php echo $i;?>');
+        // Listen for open click
+        modalBtn<?php echo $i;?>.addEventListener('click', openModal);
+        <?php $i--;?>
+      //}
+
+
         // Get close button
         var closeBtn = document.getElementsByClassName('closeBtn')[0];
-
-        // Listen for open click
-        modalBtn.addEventListener('click', openModal);
         // Listen for close click
         closeBtn.addEventListener('click', closeModal);
         // Listen for outside click
@@ -209,19 +212,16 @@ else {
         function openModal(){
           modal.style.display = 'block';
         }
-
         // Function to close modal
         function closeModal(){
           modal.style.display = 'none';
         }
-
         // Function to close modal if outside click
         function outsideClick(e){
           if(e.target == modal){
             modal.style.display = 'none';
           }
         }
-
         </script>
 
     <footer>
