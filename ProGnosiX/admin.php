@@ -11,6 +11,25 @@ session_start();
     <link rel="stylesheet" href="./css/style.css">
     <script src="js/main.js"></script>
   </head>
+
+
+    <?php
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+      if(isset($_POST['add_user']))
+      {
+        echo "require add_user";
+        require 'add_user.php';
+      }
+      elseif (isset($_POST['creare_runda'])) { //user registering
+
+
+      require 'insert_round.php';
+
+  }
+    }
+     ?>
+
   <body>
     <header>
       <div class="container">
@@ -31,8 +50,8 @@ session_start();
 
         <nav id="profiletabs">
           <ul id = "admlist">
-            <li><a href="#users"  id="adm0" class="sel" >Users</a></li>
-            <li><a href="#rounds" id="adm1" >Rounds</a></li>
+            <li><a href="#users"  id="adm0" class="sel" >Studenti</a></li>
+            <li><a href="#rounds" id="adm1" >Runde</a></li>
             <li><a href="#inbox"  id="adm2" >Inbox</a></li>
           </ul>
           </ul>
@@ -59,7 +78,7 @@ session_start();
               ?>
 
             </table>
-            <button type="button" class="addUserBtn" onclick="addUser()">Add user</button>
+            <button type="button" class="addUserBtn" onclick="addUser()">Adaugare student</button>
           </div>
         </section>
 
@@ -85,9 +104,8 @@ session_start();
                 echo "<tr\><td>".$materie["nume_materie"]."</td><td>".$row["nume_runda"]." </td><td>".$materie["an"]."</td><td>".$count_particip["total"]."</td><td></td></tr>";
               }
               ?>
-
             </table>
-            <button type="button" class="addUserBtn" onclick="addRound()">Create new round
+            <button type="button" class="addUserBtn" onclick="addRound()">Adaugare runda
             </button>
           </div>
         </section>
@@ -96,22 +114,19 @@ session_start();
           <div style="overflow-x:auto;">
             <table class="adminTable">
               <tr>
-                <th>Sender</th>
-                <th>Date</th>
-                <th>Content</th>
+                <th>Email</th>
+                <th>Data</th>
+                <th>Continut</th>
                 <th></th>
               </tr>
               <?php
               $results = $mysqli->query("SELECT * FROM inbox") or die($mysqli->error());
-               while ($row = $results->fetch_assoc()) {
-
+              while ($row = $results->fetch_assoc()) {
                 echo "<tr\><td>".$row["email"]."</td><td>".$row["data_mesaj"]." </td><td>".$row["mesaj"]."</td><td></td></tr>";
               }
               ?>
-
-
             </table>
-            <button type="button" class="addUserBtn" onclick="clearInbox()">Clear inbox
+            <button type="button" class="addUserBtn" onclick="clearInbox()">Stergere Inbox
             </button>
           </div>
         </section>
@@ -126,22 +141,29 @@ session_start();
         </div>
         <div class="modal-body">
             <p>Completati specificatiile rundei</p>
+            <form action="admin.php" method="post" autocomplete="on" enctype="multipart/form-data">
             <p>
-            Materie:<select>
-                      <option value="TW">TW</option>
-                      <option value="IP">IP</option>
-                      <option value="PA">PA</option>
-                      <option value="PSGBD">PSGBD</option>
-                    </select>
+            Materie:<select name="materie_creare_runda">
+              <?php
+              $results = $mysqli->query("SELECT * FROM materie") or die($mysqli->error());
+              while ($row = $results->fetch_assoc()) {
+                echo "<option>".$row["nume_materie"]."</option>";
+              }
+              ?>
+              <!-- <option >Baze de date</option>
+              <option >Algoritmi genetici</option> -->
+
+              </select>
               </p>
               <p>
-                Nota la: <input type="text" name="denumire">
+                Nota la: <input type="text" name="nume_runda">
               </p>
               <p>
-                Incarca notele originale: <input type="file" id="myFile" multiple size="50" onchange="myFunction()">
+                Incarca notele originale: <input type="file" name="fileToUpload" id="fileToUpload" ">
               </p>
 
-          <button type="submit" class="button_2">Create</button>
+          <button type="submit" class="button_2" name="creare_runda">Creare</button>
+        </form>
         </div>
       </div>
     </div>
@@ -153,21 +175,22 @@ session_start();
             <h2>Adauga utilizator nou</h2>
         </div>
         <div class="modal-body">
-          <p>Completati dateleutilizatorului</p>
+          <p>Completati datele utilizatorului</p>
+          <form action="admin.php" method="post" autocomplete="on">
+
           <p>Nume:</p>
-          <p><input type="text" name="denumire"></p>
+          <p><input type="text" name="nume_user"></p>
           <p>Prenume:</p>
-          <p><input type="text" name="denumire"></p>
+          <p><input type="text" name="prenume_user"></p>
           <p>An:</p>
-          <p><select>
+          <p><select name="an_user">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
-                    <option value="Cursant">Cursant</option>
                   </select>
             </p>
             <p>Grupa:</p>
-            <p><select>
+            <p><select name="grupa_user">
                     <option value="A1">A1</option>
                     <option value="A2">A2</option>
                     <option value="A3">A3</option>
@@ -176,22 +199,25 @@ session_start();
                     <option value="A6">A6</option>
                     <option value="A7">A7</option>
                     <option value="B1">B1</option>
-                    <option value="B2">B1</option>
-                    <option value="B3">B1</option>
-                    <option value="B4">B1</option>
-                    <option value="B5">B1</option>
-                    <option value="B6">B1</option>
-                    <option value="B7">B1</option>
+                    <option value="B2">B2</option>
+                    <option value="B3">B3</option>
+                    <option value="B4">B4</option>
+                    <option value="B5">B5</option>
+                    <option value="B6">B6</option>
+                    <option value="B7">B7</option>
                     <option value="E">E</option>
                     </select>
               </p>
             <p>E-mail:</p>
-            <p><input type="email" name="email"></p>
+            <p><input type="email" name="email_user"></p>
             <p>Parola:</p>
-            <p><input type="text" name="psw"></p>
+            <p><input type="text" name="parola_user"></p>
 
-          <button type="submit" class="button_2">Trimite</button>
+          <button class="button_2" name = "add_user">Trimite</button>
+        </form>
+
         </div>
+
       </div>
     </div>
 
@@ -280,10 +306,6 @@ session_start();
                 $(this).css('color','Red');
             }
         });
-
-
-
-
 
         </script>
 
