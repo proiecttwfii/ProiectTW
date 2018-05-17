@@ -21,10 +21,14 @@ session_start();
         </div>
         <nav>
           <ul>
-            <li><a href="index.php">Acasă</a></li>
-            <li class="current"><a href="grades.php">Rezultate</a></li>
-            <li><a href="contact.php">Contact</a></li>
             <?php
+                if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 0)  {
+                  echo "<li class=\"\"><a href=\"index.php\">Acasă</a></li>";
+                }
+                echo "<li class=\"current\"><a href=\"grades.php\">Rezultate</a></li>";
+                if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 0)  {
+                  echo "<li class=\"\"><a href=\"contact.php\">Contact</a></li>";
+                }
                 if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1)  {
                   echo "<li class=\"\"><a href=\"user.php\">Profil</a></li>
                   <li><a href=\"logout.php\">Logout</a></li>";
@@ -35,17 +39,20 @@ session_start();
       </div>
     </header>
 
-
-    <section id="logging">
-      <div class="container">
-        <h1>Logare</h1>
-        <form action="index.php" method="post" autocomplete="on">
-          <input type="email"  name="email" placeholder="Introduceți email-ul">
-          <input type="password" required autocomplete="off" name="parola" placeholder="Introduceți parola">
-          <button class="button_1" name = "login">Intră în cont</button>
-        </form>
-      </div>
-    </section>
+    <?php
+    if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 0) {
+      echo " <section id=\"logging\">
+            <div class=\"container\">
+              <h1>Logare</h1>
+              <form action=\"index.php\" method=\"post\" autocomplete=\"on\">
+                <input type=\"email\"  name=\"email\" placeholder=\"Introduceți email-ul\">
+                <input type=\"password\" required autocomplete=\"off\" name=\"parola\" placeholder=\"Introduceți parola\">
+                <button class=\"button_1\" name = \"login\">Intră în cont</button>
+              </form>
+            </div>
+          </section>";
+    }
+    ?>
 
     <section id="main">
       <div class="container">

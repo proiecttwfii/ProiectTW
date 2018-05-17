@@ -1,0 +1,37 @@
+<DATA>
+
+	<ROW>
+		<id>37</id>
+		<id_set_note>1</id_set_note>
+		<email_student>bea@info.uaic.ro</email_student>
+		<valoare_nota>8</valoare_nota>
+	</ROW>
+
+	<ROW>
+		<id>36</id>
+		<id_set_note>1</id_set_note>
+		<email_student>bea1@info.uaic.ro</email_student>
+		<valoare_nota>7</valoare_nota>
+	</ROW>
+
+	<ROW>
+		<id>35</id>
+		<id_set_note>1</id_set_note>
+		<email_student>bea2@info.uaic.ro</email_student>
+		<valoare_nota>4</valoare_nota>
+	</ROW>
+
+	<ROW>
+		<id>34</id>
+		<id_set_note>1</id_set_note>
+		<email_student>bea3@info.uaic.ro</email_student>
+		<valoare_nota>5</valoare_nota>
+	</ROW>
+
+	<ROW>
+		<id>33</id>
+		<id_set_note>1</id_set_note>
+		<email_student>bea4@info.uaic.ro</email_student>
+		<valoare_nota>5</valoare_nota>
+	</ROW>
+</DATA>

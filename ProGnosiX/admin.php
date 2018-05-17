@@ -22,11 +22,9 @@ session_start();
         require 'add_user.php';
       }
       elseif (isset($_POST['creare_runda'])) { //user registering
-
-
       require 'insert_round.php';
 
-  }
+      }
     }
      ?>
 
@@ -159,7 +157,7 @@ session_start();
                 Nota la: <input type="text" name="nume_runda">
               </p>
               <p>
-                Incarca notele originale: <input type="file" name="fileToUpload" id="fileToUpload" ">
+                Incarca notele originale: <input type="file" name="fileToUpload" id="fileToUpload">
               </p>
 
           <button type="submit" class="button_2" name="creare_runda">Creare</button>
@@ -220,8 +218,6 @@ session_start();
 
       </div>
     </div>
-
-
 
         <script>
 
@@ -308,7 +304,6 @@ session_start();
         });
 
         </script>
-
 
     <footer>
       <p>The ProGnosiX Game, Copyright &copy; 2018</p>

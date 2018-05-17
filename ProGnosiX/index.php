@@ -2,6 +2,7 @@
 <?php
 require 'db.php';
 session_start();
+$_SESSION['logged_in'] = 0;
 ?>
 <html>
   <head>
@@ -32,10 +33,14 @@ session_start();
         </div>
         <nav>
           <ul>
-            <li class="current"><a href="index.php">Acasă</a></li>
-            <li><a href="grades.php">Rezultate</a></li>
-            <li><a href="contact.php">Contact</a></li>
             <?php
+                if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 0)  {
+                  echo "<li class=\"current\"><a href=\"index.php\">Acasă</a></li>";
+                }
+                echo "<li class=\"\"><a href=\"grades.php\">Rezultate</a></li>";
+                if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 0)  {
+                  echo "<li class=\"\"><a href=\"contact.php\">Contact</a></li>";
+                }
                 if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 1)  {
                   echo "<li class=\"\"><a href=\"user.php\">Profil</a></li>
                   <li><a href=\"logout.php\">Logout</a></li>";

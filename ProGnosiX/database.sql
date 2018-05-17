@@ -37,10 +37,12 @@ CREATE TABLE `runde` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `seturi_note` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_set_note` int(11) NOT NULL,
+  `email_student` varchar(255) NOT NULL,
   `valoare_nota` int(11) NOT NULL,
-  `id_student` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=169 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `inbox` (
   `id_mesaj` int(11) NOT NULL AUTO_INCREMENT,
