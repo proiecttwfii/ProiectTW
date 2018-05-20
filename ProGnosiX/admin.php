@@ -2,6 +2,10 @@
 <?php
 require 'db.php';
 session_start();
+if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
+  header("location:index.php");
+  die();
+}
 ?>
 <html>
   <head>
@@ -66,9 +70,9 @@ session_start();
                 <th></th>
               </tr>
               <?php
-              $results = $mysqli->query("SELECT * FROM prognoze") or die($mysqli->error());
+              $results = $mysqli->query("SELECT distinct id_student as smt FROM prognoze") or die($mysqli->error());
                while ($row = $results->fetch_assoc()) {
-                 $id = $row["id_student"];
+                 $id = $row["smt"];
                  $users = $mysqli->query("SELECT * FROM accounts where id = '$id'");
                  $user = $users->fetch_assoc();
                 echo "<tr\><td>".$user["nume"]." ".$user["prenume"]."</td><td>".$user["an"]."</td><td>".$user["grupa"]."</td><td>+3</td><td></td></tr>";
@@ -256,7 +260,7 @@ session_start();
                     li2.classList.remove("sel");
                     users.classList.remove("hidden");
                     rounds.classList.add("hidden");
-					inbox.classList.add("hidden");
+					          inbox.classList.add("hidden");
                     tab = [], index;
                     for(var i = 0; i < items.length; i++){
                        tab.push(items[i].innerHTML);

@@ -12,16 +12,16 @@ if ( $result->num_rows == 0 ){ // User doesn't exist
 }
 else { // User exists
     $user = $result->fetch_assoc();
-    echo $_POST['parola'];
-    echo $user['parola'];
-    if ( password_verify($_POST['parola'], password_hash($user['parola'], PASSWORD_BCRYPT)) ) {
+    if (password_verify($_POST['parola'], password_hash($user['parola'], PASSWORD_BCRYPT)) ) {
         $_SESSION['email'] = $user['email'];
         // This is how we'll know the user is logged in
         $_SESSION['logged_in'] = 1;
         if ($user["admin"] == 0) {
+          $_SESSION['admin'] = 0;
           header("location: user.php");
         }
-        else {
+        else if ($user["admin"] == 1){
+           $_SESSION['admin'] = 1;
            header("location: admin.php");
          }
     }

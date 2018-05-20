@@ -3,6 +3,10 @@
 require 'db.php';
 session_start();
 $_SESSION['logged_in'] = 0;
+if ( $_SESSION['logged_in'] == 1 ) {
+//header("location:index.php");
+die();
+}
 ?>
 <html>
   <head>

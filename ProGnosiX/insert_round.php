@@ -1,7 +1,7 @@
 <?php
 // Escape all $_POST variables to protect against SQL injections
-$nume_materie = $_POST['materie_creare_runda'];
-$nume_runda = $_POST['nume_runda'];
+$nume_materie = $mysqli->escape_string($_POST['materie_creare_runda']);
+$nume_runda = $mysqli->escape_string($_POST['nume_runda']);
 
 $result = $mysqli->query("SELECT * FROM runde WHERE nume_runda='$nume_runda'") or die($mysqli->error());
 

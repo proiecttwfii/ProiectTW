@@ -12,8 +12,8 @@ $_SESSION['prenume_user'] = $_POST['prenume_user'];
 $nume_user = $mysqli->escape_string($_POST['nume_user']);
 $prenume_user = $mysqli->escape_string($_POST['prenume_user']);
 $email_user = $mysqli->escape_string($_POST['email_user']);
-$an_user = $_POST['an_user'];
-$grupa_user = $_POST['grupa_user'];
+$an_user = $mysqli->escape_string($_POST['an_user']);
+$grupa_user = $mysqli->escape_string($_POST['grupa_user']);
 $parola_user = $mysqli->escape_string($_POST['parola_user']);
 //$hash = $mysqli->escape_string( md5( rand(0,1000) ) );
 
