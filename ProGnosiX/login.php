@@ -1,14 +1,18 @@
 <?php
 /* User login process, checks if user exists and password is correct */
-
 // Escape email to protect against SQL injections
 $email = $mysqli->escape_string($_POST['email']);
 $result = $mysqli->query("SELECT * FROM accounts WHERE email='$email'");
 
-if ( $result->num_rows == 0 ){ // User doesn't exist
-  echo "user not found";
+if ($_POST['email'] == "") {
+  $message = "Introduceți emailul.";
+  echo "<script type='text/javascript'>alert('$message'); </script>";
+}
+
+else if ( $result->num_rows == 0 ){ // User doesn't exist
+  $message = "Email-ul si/sau parola sunt incorecte.\\nInceara din nou.";
+  echo "<script type='text/javascript'>alert('$message'); </script>";
     $_SESSION['message'] = "User with that email doesn't exist!";
-    //header("location: error.php");
 }
 else { // User exists
     $user = $result->fetch_assoc();
@@ -26,8 +30,8 @@ else { // User exists
          }
     }
     else {
-        $_SESSION['message'] = "You have entered wrong password, try again!";
-        header("location: index.php");
+      $message = "Email-ul si/sau parola sunt incorecte.\\nInceara din nou.";
+      echo "<script type='text/javascript'>alert('$message'); </script>";
     }
 }
 ?>

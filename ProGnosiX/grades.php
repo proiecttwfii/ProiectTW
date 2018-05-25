@@ -39,6 +39,7 @@ session_start();
       </div>
     </header>
 
+<!--
     <?php
     if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == 0) {
       echo " <section id=\"logging\">
@@ -52,8 +53,8 @@ session_start();
             </div>
           </section>";
     }
-    ?>
-
+    ?> -->
+    
     <section id="main">
       <div class="container">
         <article id="main-col-grades">
@@ -75,8 +76,6 @@ session_start();
         </article>
       </div>
     </section>
-
-
 
     <footer>
       <p>The ProGnosiX Game, Copyright &copy; 2018</p>

@@ -6,7 +6,6 @@
   $_SESSION['message'] = "You must log in before viewing your profile page!";
   header("location:index.php");
   die();
-  //header("location: error.php");
 }
 else {
     $email = $_SESSION['email'];
@@ -21,8 +20,8 @@ else {
   	<meta name="author" content="Acasandrei Beatrice, Simion Cosmin">
     <title>ProGnosiX | Profil</title>
     <link rel="stylesheet" href="./css/style.css">
-
   </head>
+
   <body>
     <header>
       <div class="container">
@@ -87,7 +86,6 @@ else {
         </section>
 
         <section id="activity" class="hidden">
-
           <?php
           $result_activity = $mysqli->query("SELECT * FROM prognoze INNER JOIN accounts ON accounts.id = prognoze.id_student WHERE email = '$email'") or die($mysqli->error());
            while ($row = $result_activity->fetch_assoc()) {
@@ -98,7 +96,6 @@ else {
              echo "<p class=\"activity\"> ".$row["data_prognoza"]." - Prognoză - ".$materie["nume_materie"]." - ".$runda["nume_runda"]." - Punctaj final: ".$row["prognoza_student"]."</p>";
           }
           ?>
-
         </section>
 
         <section id="subjects" class="hidden">
@@ -201,14 +198,12 @@ else {
         // Get modal element
         var modal = document.getElementById('simpleModal');
 
-
         var count = <?php echo $i;?>;
               while (count > 0) {
                 // Get open modal button
                 document.getElementById(count).addEventListener('click', openModal);
                 count --;
               }
-
 
         // Get close button
         var closeBtn = document.getElementsByClassName('closeBtn')[0];

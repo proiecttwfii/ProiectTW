@@ -51,7 +51,6 @@ CREATE TABLE `inbox` (
   `an` int(11) NOT NULL,
   `grupa` varchar(30) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `mesaj` varchar(500) NOT NULL,
   `data_mesaj` datetime NOT NULL,
   PRIMARY KEY (`id_mesaj`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -64,9 +63,9 @@ INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`
 INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (6,'andrei.aionanei@info.uaic.ro','123','Aioanei','Andrei',2,2,'B5',0);
 INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (7,'ioan.maria@info.uaic.ro','123','Maria','Ioan',2,2,'B4',0);
 
-INSERT INTO `inbox` (`id_mesaj`,`nume`,`prenume`,`an`,`grupa`,`email`,`mesaj`,`data_mesaj`) VALUES (1,'Zaharia','Rober',2,'A3','robert.zaharia@info.uaic.ro','Buna ziua. Nu ma pot conecta pe platforma.','2018-05-23');
-INSERT INTO `inbox` (`id_mesaj`,`nume`,`prenume`,`an`,`grupa`,`email`,`mesaj`,`data_mesaj`) VALUES (2,'Eminovici','Andreea',2,'B2','andreea.eminovici@info.uaic.ro','Buna ziua. Nu ma pot loga.','2018-04-13');
-INSERT INTO `inbox` (`id_mesaj`,`nume`,`prenume`,`an`,`grupa`,`email`,`mesaj`,`data_mesaj`) VALUES (3,'Postolache','Vlad',2,'B7','vlad.postolache@info.uaic.ro','','2018-04-06');
+INSERT INTO `inbox` (`id_mesaj`,`nume`,`prenume`,`an`,`grupa`,`email`,`data_mesaj`) VALUES (1,'Zaharia','Rober',2,'A3','robert.zaharia@info.uaic.ro','2018-05-23');
+INSERT INTO `inbox` (`id_mesaj`,`nume`,`prenume`,`an`,`grupa`,`email`,`data_mesaj`) VALUES (2,'Eminovici','Andreea',2,'B2','andreea.eminovici@info.uaic.ro','2018-04-13');
+INSERT INTO `inbox` (`id_mesaj`,`nume`,`prenume`,`an`,`grupa`,`email`,`data_mesaj`) VALUES (3,'Postolache','Vlad',2,'B7','vlad.postolache@info.uaic.ro','2018-04-06');
 
 INSERT INTO `materie` (`id_materie`,`nume_materie`,`an`,`semestru`) VALUES (1,'Retele de calculatoare',2,1);
 INSERT INTO `materie` (`id_materie`,`nume_materie`,`an`,`semestru`) VALUES (2,'Baze de date',2,1);

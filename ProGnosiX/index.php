@@ -4,7 +4,6 @@ require 'db.php';
 session_start();
 $_SESSION['logged_in'] = 0;
 if ( $_SESSION['logged_in'] == 1 ) {
-//header("location:index.php");
 die();
 }
 ?>
@@ -24,7 +23,6 @@ die();
   {
     if(isset($_POST['login']))
     {
-      //echo "require login";
       require 'login.php';
     }
   }
@@ -68,22 +66,17 @@ die();
       <div class="container">
         <h1>Logare</h1>
         <form action="index.php" method="post" autocomplete="on">
-          <input type="email"  name="email" placeholder="Introduceți email-ul">
-          <input type="password" required autocomplete="off" name="parola" placeholder="Introduceți parola">
+          <input type="email"  name="email" placeholder="Introduceți email-ul" required>
+          <input type="password" required autocomplete="off" name="parola" placeholder="Introduceți parola" required>
           <button class="button_1" name = "login">Intră în cont</button>
         </form>
       </div>
     </section>
 
-
-
     <footer>
       <p>The ProGnosiX Game, Copyright &copy; 2018</p>
     </footer>
 
-
-
   </body>
 </html>
-
 <?p

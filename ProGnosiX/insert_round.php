@@ -3,15 +3,18 @@
 $nume_materie = $mysqli->escape_string($_POST['materie_creare_runda']);
 $nume_runda = $mysqli->escape_string($_POST['nume_runda']);
 
-$result = $mysqli->query("SELECT * FROM runde WHERE nume_runda='$nume_runda'") or die($mysqli->error());
 
 $materii = $mysqli->query("SELECT * FROM materie WHERE nume_materie='$nume_materie'") or die($mysqli->error());
 $materie = $materii->fetch_assoc();
 $id = $materie['id_materie'];
 
+$result = $mysqli->query("SELECT * FROM runde WHERE nume_runda='$nume_runda' and id_materie = '$id'") or die($mysqli->error());
+
+
 if ( $result->num_rows > 0 ) {
     $_SESSION['message'] = 'Round with this name already exists!';
-    header("location: error.php");
+    $message = "Exista deja o runda cu acest nume. Incercati din nou.";
+    echo "<script type='text/javascript'>alert('$message'); </script>";
 }
 else {
 
@@ -22,31 +25,37 @@ else {
 
     // Check if file already exists
     if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
+        $message = "Sorry, file already exists.";
+        echo "<script type='text/javascript'>alert('$message'); </script>";
         $uploadOk = 0;
     }
 
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
+        $message =  "Sorry, your file is too large.";
+        echo "<script type='text/javascript'>alert('$message'); </script>";
         $uploadOk = 0;
     }
 
     // Allow certain file formats
     if($fileType != "csv" && $fileType != "xml" && $fileType != "json") {
-        echo "Sorry, only csv, xml, json files are allowed.";
+        $message = "Doar fisiere de tip csv, xml si json.";
+        echo "<script type='text/javascript'>alert('$message'); </script>";
         $uploadOk = 0;
     }
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
+        $message = "Sorry, your file was not uploaded.";
+        echo "<script type='text/javascript'>alert('$message'); </script>";
     // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+            $message = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+            echo "<script type='text/javascript'>alert('$message'); </script>";
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            $message = "Sorry, there was an error uploading your file.";
+            echo "<script type='text/javascript'>alert('$message'); </script>";
         }
     }
 
@@ -63,16 +72,15 @@ else {
           print"</pre>";
             $value = "'". implode("','", (array)$line_of_text[$i]) ."'";
             echo $value;
-            //$mysqli->query("INSERT INTO seturi_note (id_set_note) "."VALUES ('$id_set_note')");
             $r = $mysqli->query("INSERT INTO seturi_note (id_set_note, email_student, valoare_nota) "."VALUES ('$id_set_note',". $value .")");
             if($r) { $state_csv = true; }
             else { $state_csv = false; }
             $i++;
         }
-        if ($state_csv) { echo "Succes"; }
-        else{
-          $_SESSION['message'] = 'Insert csv failed!';
-          header("location: error.php");}
+        if (!$state_csv) {
+          $message = "Insert csv failed!";
+          echo "<script type='text/javascript'>alert('$message'); </script>";
+        }
     }
 
     function importJSON($jsonFile, $mysqli, $id_set_note)
@@ -82,7 +90,6 @@ else {
         foreach ($array as $row) {
           $result = $mysqli->query("INSERT INTO seturi_note (id_set_note, email_student, valoare_nota) " . "VALUES ('$id_set_note','".$row["email_student"]."','".$row["valoare_nota"]."')");
         }
-        echo "succes json";
     }
 
     function importXML($xmlFile, $mysqli,$id_set_note)
@@ -92,10 +99,9 @@ else {
         $xmldata = $xmldoc->getElementsByTagName('ROW');
         $xmlcount = $xmldata->length;
         for ($i=0; $i < $xmlcount; $i++) {
-            //$id_set_note = $xmldata->item($i)->getElementsByTagName('id_set_note')->item(0)->childNodes->item(0)->nodeValue;
             $email_student = $xmldata->item($i)->getElementsByTagName('email_student')->item(0)->childNodes->item(0)->nodeValue;
             $valoare_nota = $xmldata->item($i)->getElementsByTagName('valoare_nota')->item(0)->childNodes->item(0)->nodeValue;
-            echo $email_student;
+            //echo $email_student;
             $result = $mysqli->query("INSERT INTO seturi_note (id_set_note, email_student, valoare_nota) " . "VALUES ('$id_set_note','$email_student','$valoare_nota')");
         }
     }
@@ -108,7 +114,7 @@ else {
         $id_set_note = 1;
     }
 
-
+    if($uploadOk == 1) {
     if($fileType == "csv")
     {
         $csv = importCSV($_FILES['fileToUpload']['tmp_name'], $mysqli,$id_set_note);
@@ -122,7 +128,6 @@ else {
         $xml = importXML($_FILES['fileToUpload']['tmp_name'], $mysqli, $id_set_note);
     }
 
-
     $sql = "INSERT INTO runde (id_materie, nume_runda, id_set_note) "
             . "VALUES ('$id','$nume_runda','7')";
 
@@ -131,8 +136,10 @@ else {
         header("location: admin.php");
     }
     else {
-        $_SESSION['message'] = 'Registration failed!';
-        header("location: error.php");
+        $message = "Inserarea rundei a esuat!";
+        echo "<script type='text/javascript'>alert('$message'); </script>";
     }
+  }
 }
+
 ?>

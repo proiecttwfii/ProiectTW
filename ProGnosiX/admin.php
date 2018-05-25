@@ -16,18 +16,16 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
     <script src="js/main.js"></script>
   </head>
 
-
     <?php
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
       if(isset($_POST['add_user']))
       {
-        echo "require add_user";
         require 'add_user.php';
       }
-      elseif (isset($_POST['creare_runda'])) { //user registering
-      require 'insert_round.php';
-
+      elseif (isset($_POST['creare_runda']))
+      {
+        require 'insert_round.php';
       }
     }
      ?>
@@ -66,16 +64,14 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                 <th>Nume</th>
                 <th>An</th>
                 <th>Grupa</th>
-                <th>Punctaj</th>
+                <th>Email</th>
                 <th></th>
               </tr>
               <?php
-              $results = $mysqli->query("SELECT distinct id_student as smt FROM prognoze") or die($mysqli->error());
+              // $results = $mysqli->query("SELECT distinct id_student as smt FROM prognoze") or die($mysqli->error());
+              $results = $mysqli->query("SELECT * FROM accounts WHERE admin != 1") or die($mysqli->error());
                while ($row = $results->fetch_assoc()) {
-                 $id = $row["smt"];
-                 $users = $mysqli->query("SELECT * FROM accounts where id = '$id'");
-                 $user = $users->fetch_assoc();
-                echo "<tr\><td>".$user["nume"]." ".$user["prenume"]."</td><td>".$user["an"]."</td><td>".$user["grupa"]."</td><td>+3</td><td></td></tr>";
+                echo "<tr\><td>".$row["nume"]." ".$row["prenume"]."</td><td>".$row["an"]."</td><td>".$row["grupa"]."</td><td>".$row["email"]."</td><td></td></tr>";
               }
               ?>
 
@@ -117,14 +113,17 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
             <table class="adminTable">
               <tr>
                 <th>Email</th>
+                <th>Nume</th>
+
+                <th>An</th>
+                <th>Grupa</th>
                 <th>Data</th>
-                <th>Continut</th>
                 <th></th>
               </tr>
               <?php
               $results = $mysqli->query("SELECT * FROM inbox") or die($mysqli->error());
               while ($row = $results->fetch_assoc()) {
-                echo "<tr\><td>".$row["email"]."</td><td>".$row["data_mesaj"]." </td><td>".$row["mesaj"]."</td><td></td></tr>";
+                echo "<tr\><td>".$row["email"]."</td><td>".$row["nume"]." ".$row["prenume"]."</td><td>".$row["an"]."</td><td>".$row["grupa"]."</td><td>".$row["data_mesaj"]."</td><td></td></tr>";
               }
               ?>
             </table>
@@ -152,19 +151,15 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                 echo "<option>".$row["nume_materie"]."</option>";
               }
               ?>
-              <!-- <option >Baze de date</option>
-              <option >Algoritmi genetici</option> -->
-
               </select>
               </p>
               <p>
-                Nota la: <input type="text" name="nume_runda">
+                Nota la: <input type="text" name="nume_runda" required>
               </p>
               <p>
-                Incarca notele originale: <input type="file" name="fileToUpload" id="fileToUpload">
+                Incarca notele originale: <input type="file" name="fileToUpload" id="fileToUpload" required>
               </p>
-
-          <button type="submit" class="button_2" name="creare_runda">Creare</button>
+          <button type="submit" class="button_2" name="creare_runda" onclick="creare_runda()">Creare</button>
         </form>
         </div>
       </div>
@@ -181,9 +176,9 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
           <form action="admin.php" method="post" autocomplete="on">
 
           <p>Nume:</p>
-          <p><input type="text" name="nume_user"></p>
+          <p><input type="text" name="nume_user" required></p>
           <p>Prenume:</p>
-          <p><input type="text" name="prenume_user"></p>
+          <p><input type="text" name="prenume_user" required></p>
           <p>An:</p>
           <p><select name="an_user">
                     <option value="1">1</option>
@@ -211,9 +206,9 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                     </select>
               </p>
             <p>E-mail:</p>
-            <p><input type="email" name="email_user"></p>
+            <p><input type="email" name="email_user" required></p>
             <p>Parola:</p>
-            <p><input type="text" name="parola_user"></p>
+            <p><input type="text" name="parola_user" required></p>
 
           <button class="button_2" name = "add_user">Trimite</button>
         </form>
@@ -222,8 +217,11 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
 
       </div>
     </div>
-
         <script>
+
+      function creare_runda() {
+         alert("I am an alert box!");
+      }
 
         function addRound(){
           document.getElementById('addRoundDialog').style.display='block';
@@ -231,7 +229,6 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
         function addUser(){
           document.getElementById('addUserDialog').style.display='block';
         }
-
 
         var items = document.querySelectorAll("#admlist li"),
         tab = [], index;

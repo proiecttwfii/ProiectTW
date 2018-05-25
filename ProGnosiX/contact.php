@@ -39,7 +39,7 @@ session_start();
       </div>
     </header>
 
-    <section id="logging">
+    <!-- <section id="logging">
       <div class="container">
         <h1>Logare</h1>
         <form action="index.php" method="post" autocomplete="on">
@@ -48,7 +48,7 @@ session_start();
           <button class="button_1" name = "login">Intră în cont</button>
         </form>
       </div>
-    </section>
+    </section> -->
 
         <section id="main">
           <div class="container">
@@ -68,24 +68,21 @@ session_start();
                 <form class="contact">
                   <div>
                     <label>Nume</label><br>
-                    <input type="text" placeholder="Nume">
+                    <input type="text" placeholder="Nume" required>
                   </div>
                   <div>
                     <label>Prenume</label><br>
-                    <input type="text" placeholder="Prenume">
+                    <input type="text" placeholder="Prenume" required>
                   </div>
                   <div>
                     <label>An, Grupa</label><br>
-                    <input type="text" placeholder="An, Grupa">
+                    <input type="text" placeholder="An, Grupa" required>
                   </div>
                   <div>
                     <label>Email</label><br>
-                    <input type="email" placeholder="Adresa de email">
+                    <input type="email" placeholder="Adresa de email" required>
                   </div>
-                  <div>
-                    <label>Mesaj</label><br>
-                    <textarea placeholder="Mesaj"></textarea>
-                  </div>
+
                   <button class="button_1" type="submit">Send</button>
               </form>
               </div>
