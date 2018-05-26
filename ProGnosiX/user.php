@@ -22,6 +22,17 @@ else {
     <link rel="stylesheet" href="./css/style.css">
   </head>
 
+<?php
+
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+  if(isset($_POST['add_prognosix']))
+  {
+    require 'add_prognosix.php';
+  }
+}
+ ?>
+
   <body>
     <header>
       <div class="container">
@@ -107,6 +118,7 @@ else {
              $materii = $mysqli->query("SELECT * FROM materie where id_materie = ".$row["id_materie"]." ");
              $materie = $materii->fetch_assoc();
              echo "<p id=\"".$i."\" class=\"subjects\" >".$materie["nume_materie"]." - ".$row["nume_runda"]."</p>";
+             $vec[$i] = array($materie["nume_materie"], $row["nume_runda"], $row["id_runda"]);
           }
           ?>
         </section>
@@ -117,12 +129,17 @@ else {
         <div class="modal-content">
           <div class="modal-header">
               <span class="closeBtn">&times;</span>
-              <h2>Practică SGBD</h2>
+              <h2 id="nume_materie"></h2>
           </div>
           <div class="modal-body">
-            <p>Autoevaluare Test 1</p>
-            <input type="text">
-            <button type="submit" class="button_2">Trimite</button>
+            <p>Autoevaluare</p>
+            <p id="nume_runda">Autoevaluare</p>
+            <form action="user.php" method="post" autocomplete="on">
+            <input type="text" name="nota_propusa" required>
+            <input type="hidden" id="hiddencontainer" name="hiddencontainer"/>
+            <button type="submit" class="button_2" name="add_prognosix">Trimite</button>
+          </form>
+
           </div>
         </div>
       </div>
@@ -214,8 +231,14 @@ else {
 
         // Function to open modal
         function openModal(){
+          var content = <?php echo json_encode($vec); ?>;
+          document.getElementById("nume_materie").innerHTML = content[this.id][0];
+          document.getElementById("nume_runda").innerHTML = content[this.id][1];
+          var myhidden = document.getElementById("hiddencontainer");
+          myhidden.value=content[this.id][2];
           modal.style.display = 'block';
         }
+
         // Function to close modal
         function closeModal(){
           modal.style.display = 'none';
