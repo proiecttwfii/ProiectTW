@@ -27,6 +27,10 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
       {
         require 'insert_round.php';
       }
+      elseif (isset($_POST["hiddenInput"]))
+      {
+        require 'delete_user.php';
+      }
     }
      ?>
 
@@ -71,7 +75,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
               // $results = $mysqli->query("SELECT distinct id_student as smt FROM prognoze") or die($mysqli->error());
               $results = $mysqli->query("SELECT * FROM accounts WHERE admin != 1") or die($mysqli->error());
                while ($row = $results->fetch_assoc()) {
-                echo "<tr\><td>".$row["nume"]." ".$row["prenume"]."</td><td>".$row["an"]."</td><td>".$row["grupa"]."</td><td>".$row["email"]."</td><td></td></tr>";
+                echo "<tr\><td>".$row["nume"]." ".$row["prenume"]."</td><td>".$row["an"]."</td><td>".$row["grupa"]."</td><td>".$row["email"]."</td><td id=\"".$row["id"]."\" onclick=\"deleteStudent(this)\"></td></tr>";
               }
               ?>
 
@@ -216,8 +220,24 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
         </div>
 
       </div>
+      <div>
+        <form id="hiddenForm" name="hiddenForm" method="post" action="admin.php">
+        <input type="hidden" name="hiddenInput" id="hiddenInput" value="">
+        </form>
+      </div>
     </div>
         <script>
+
+        function deleteStudent(elem)
+        {
+          if (confirm("Are you sure you want to delete this student?"))
+          {
+            var hiddenElement = document.getElementById("hiddenInput");
+            hiddenElement.value = elem.id;
+            hiddenElement.form.submit();
+          }
+          //document.getElementById('deleteStudentModal').style.display='block';
+        }
 
       function creare_runda() {
          alert("I am an alert box!");
@@ -294,15 +314,6 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                   }
               };
           }
-
-        $('.adminTable td').each(function(){
-            var num = parseFloat($(this).text());
-            if (num > 0) {
-                $(this).css('color','Green');
-            } else if (num < 0) {
-                $(this).css('color','Red');
-            }
-        });
 
         </script>
 
