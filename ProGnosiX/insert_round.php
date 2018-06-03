@@ -114,32 +114,33 @@ else {
         $id_set_note = 1;
     }
 
-    if($uploadOk == 1) {
-    if($fileType == "csv")
+    if($uploadOk == 1)
     {
-        $csv = importCSV($_FILES['fileToUpload']['tmp_name'], $mysqli,$id_set_note);
-    }
-    else if($fileType == "json")
-    {
-        $json = importJSON($_FILES['fileToUpload']['tmp_name'], $mysqli,$id_set_note);
-    }
-    else if($fileType == "xml")
-    {
-        $xml = importXML($_FILES['fileToUpload']['tmp_name'], $mysqli, $id_set_note);
-    }
+      if($fileType == "csv")
+      {
+          $csv = importCSV($target_file, $mysqli,$id_set_note);
+      }
+      else if($fileType == "json")
+      {
+          $json = importJSON($target_file, $mysqli,$id_set_note);
+      }
+      else if($fileType == "xml")
+      {
+          $xml = importXML($target_file, $mysqli, $id_set_note);
+      }
 
-    $sql = "INSERT INTO runde (id_materie, nume_runda, id_set_note) "
-            . "VALUES ('$id','$nume_runda','7')";
+      $sql = "INSERT INTO runde (id_materie, nume_runda, id_set_note) "
+              . "VALUES ('$id','$nume_runda','7')";
 
-    if ( $mysqli->query($sql) ){
-        $_SESSION['logged_in'] = true; // So we know the admin has logged in
-        header("location: admin.php");
+      if ( $mysqli->query($sql) ){
+          $_SESSION['logged_in'] = true; // So we know the admin has logged in
+          header("location: admin.php");
+      }
+      else {
+          $message = "Inserarea rundei a esuat!";
+          echo "<script type='text/javascript'>alert('$message'); </script>";
+      }
     }
-    else {
-        $message = "Inserarea rundei a esuat!";
-        echo "<script type='text/javascript'>alert('$message'); </script>";
-    }
-  }
 }
 
 ?>

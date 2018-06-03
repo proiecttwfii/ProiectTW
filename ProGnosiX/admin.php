@@ -354,6 +354,19 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                   }
               };
           }
+          
+          var addRoundModal = document.getElementById('addRoundDialog');
+          var addUserModal = document.getElementById('addUserDialog');
+          window.addEventListener('click', outsideClick);
+          // Function to close modal if outside click
+          function outsideClick(e){
+            if(e.target == addRoundModal){
+              addRoundModal.style.display = 'none';
+            }
+          else  if(e.target == addUserModal){
+              addUserModal.style.display = 'none';
+            }
+          }
 
         </script>
 
