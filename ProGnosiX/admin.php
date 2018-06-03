@@ -35,6 +35,10 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
       {
         require 'delete_round.php';
       }
+      elseif (isset($_POST["delete_message_id"]))
+      {
+        require 'delete_message.php';
+      }
     }
      ?>
 
@@ -131,7 +135,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
               <?php
               $results = $mysqli->query("SELECT * FROM inbox") or die($mysqli->error());
               while ($row = $results->fetch_assoc()) {
-                echo "<tr\><td>".$row["email"]."</td><td>".$row["nume"]." ".$row["prenume"]."</td><td>".$row["an"]."</td><td>".$row["grupa"]."</td><td>".$row["data_mesaj"]."</td><td></td></tr>";
+                echo "<tr\><td>".$row["email"]."</td><td>".$row["nume"]." ".$row["prenume"]."</td><td>".$row["an"]."</td><td>".$row["grupa"]."</td><td>".$row["data_mesaj"]."</td><td id=\"".$row["id_mesaj"]."\" onclick=\"deleteMessage(this)\"></td></tr>";
               }
               ?>
             </table>
@@ -234,6 +238,11 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
         <input type="hidden" name="delete_round_id" id="delete_round_id" value="">
         </form>
       </div>
+      <div>
+        <form id="hiddenFormMessage" name="hiddenForm" method="post" action="admin.php">
+        <input type="hidden" name="delete_message_id" id="delete_message_id" value="">
+        </form>
+      </div>
     </div>
         <script>
 
@@ -256,7 +265,17 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
             hiddenElement.value = elem.id;
             hiddenElement.form.submit();
           }
-          //document.getElementById('deleteStudentModal').style.display='block';
+        }
+
+        function deleteMessage(elem)
+        {
+          if (confirm("Are you sure you want to delete this message?"))
+          {
+            var hiddenElement = document.getElementById("delete_message_id");
+            console.log(elem.id);
+            hiddenElement.value = elem.id;
+            hiddenElement.form.submit();
+          }
         }
 
       function creare_runda() {
