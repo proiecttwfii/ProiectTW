@@ -39,6 +39,14 @@ session_start();
       </div>
     </header>
 
+    <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+          if (isset($_POST['add_request']))
+            require 'add_request.php';
+        }
+     ?>
+
     <!-- <section id="logging">
       <div class="container">
         <h1>Logare</h1>
@@ -65,25 +73,32 @@ session_start();
             <aside id="sidebar">
               <div class="dark">
                 <h3>Cerere de înscriere</h3>
-                <form class="contact">
+                <form class="contact" method="post" autocomplete="on">
                   <div>
                     <label>Nume</label><br>
-                    <input type="text" placeholder="Nume" required>
+                    <input type="text" placeholder="Nume" name="nume_contact" required>
                   </div>
                   <div>
                     <label>Prenume</label><br>
-                    <input type="text" placeholder="Prenume" required>
+                    <input type="text" placeholder="Prenume" name="prenume_contact" required>
                   </div>
                   <div>
-                    <label>An, Grupa</label><br>
-                    <input type="text" placeholder="An, Grupa" required>
+                    <label>An</label><br>
+                    <input type="text" placeholder="An" name="an_contact" required>
+                  </div>
+                  <div>
+                    <label>Grupa</label><br>
+                    <input type="text" placeholder="Grupa" name="grupa_contact" required>
                   </div>
                   <div>
                     <label>Email</label><br>
-                    <input type="email" placeholder="Adresa de email" required>
+                    <input type="email" placeholder="Adresa de email" name="email_contact" required>
+                  </div>
+                  <div>
+                    <label></label><br>
                   </div>
 
-                  <button class="button_1" type="submit">Send</button>
+                  <button class="button_1" type="submit" name="add_request">Trimite</button>
               </form>
               </div>
             </aside>
