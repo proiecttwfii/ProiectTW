@@ -473,6 +473,10 @@ html[xmlns] .clearfix { display: block; }
   background-position: center;
   border-right: 1px solid #35424a;
 }
+#roundsTable tr>td:last-of-type{
+  background:url(../img/stop.png) no-repeat;
+  background-position: center;
+}
 .adminTable tr:last-child
 {
   border-bottom: 1px solid #35424a;
@@ -481,6 +485,11 @@ html[xmlns] .clearfix { display: block; }
 .adminTable tr > td:last-of-type:hover
 {
   background:url(../img/delete_hover.png) no-repeat;
+  background-position: center;
+}
+#roundsTable tr > td:last-of-type:hover
+{
+  background:url(../img/stop_hover.png) no-repeat;
   background-position: center;
 }
 .addUserBtn
@@ -499,6 +508,9 @@ html[xmlns] .clearfix { display: block; }
 }
 .addUserBtn:hover{
   background-color: #556977;
+}
+.addUserBtn[disabled]:hover{
+  background-color: #35424a;
 }
 
 #addUserDialog{

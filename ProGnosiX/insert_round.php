@@ -129,8 +129,8 @@ else {
           $xml = importXML($target_file, $mysqli, $id_set_note);
       }
 
-      $sql = "INSERT INTO runde (id_materie, nume_runda, id_set_note) "
-              . "VALUES ('$id','$nume_runda','7')";
+      $sql = "INSERT INTO runde (id_materie, nume_runda, id_set_note, runda_activa) "
+              . "VALUES ('$id','$nume_runda', '$id_set_note', '1')";
 
       if ( $mysqli->query($sql) ){
           $_SESSION['logged_in'] = true; // So we know the admin has logged in

@@ -35,6 +35,10 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
       {
         require 'delete_round.php';
       }
+      elseif (isset($_POST["stop_round_id"]))
+      {
+        require 'stop_round.php';
+      }
       elseif (isset($_POST["delete_message_id"]))
       {
         require 'delete_message.php';
@@ -68,7 +72,8 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
           <ul id = "admlist">
             <li><a href="#users"  id="adm0" class="sel" >Studenti</a></li>
             <li><a href="#rounds" id="adm1" >Runde</a></li>
-            <li><a href="#inbox"  id="adm2" >Inbox</a></li>
+            <li><a href="#istoric"id="adm2" >Istoric</a></li>
+            <li><a href="#inbox"  id="adm3" >Inbox</a></li>
           </ul>
           </ul>
         </nav>
@@ -98,6 +103,34 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
 
         <section id="rounds" class="hidden">
           <div style="overflow-x:auto;">
+            <table class="adminTable" id="roundsTable">
+              <tr>
+                <th>Materie</th>
+                <th>Nota la</th>
+                <th>An</th>
+                <th>Nr. total participanti</th>
+                <th></th>
+              </tr>
+              <?php
+              $results = $mysqli->query("SELECT * FROM runde where runda_activa = 1") or die($mysqli->error());
+               while ($row = $results->fetch_assoc()) {
+                 $id = $row["id_materie"];
+                 $id_runda = $row["id_runda"];
+                 $materii = $mysqli->query("SELECT * FROM materie where id_materie = '$id'");
+                 $materie = $materii->fetch_assoc();
+                 $prognoze_runde = $mysqli->query("SELECT COUNT(id_prognoza) as total FROM prognoze where id_runda = '$id_runda' ");
+                 $count_particip = $prognoze_runde->fetch_assoc();
+                echo "<tr\><td>".$materie["nume_materie"]."</td><td>".$row["nume_runda"]." </td><td>".$materie["an"]."</td><td>".$count_particip["total"]."</td><td id=\"".$row["id_runda"]."\" onclick=\"stopRound(this)\"></td></tr>";
+              }
+              ?>
+            </table>
+            <button type="button" class="addUserBtn" onclick="addRound()">Adaugare runda
+            </button>
+          </div>
+        </section>
+
+        <section id="history" class="hidden">
+          <div style="overflow-x:auto;">
             <table class="adminTable">
               <tr>
                 <th>Materie</th>
@@ -107,7 +140,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                 <th></th>
               </tr>
               <?php
-              $results = $mysqli->query("SELECT * FROM runde") or die($mysqli->error());
+              $results = $mysqli->query("SELECT * FROM runde where runda_activa = 0") or die($mysqli->error());
                while ($row = $results->fetch_assoc()) {
                  $id = $row["id_materie"];
                  $id_runda = $row["id_runda"];
@@ -119,7 +152,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
               }
               ?>
             </table>
-            <button type="button" class="addUserBtn" onclick="addRound()">Adaugare runda
+            <button type="button" class="addUserBtn" disabled>
             </button>
           </div>
         </section>
@@ -143,7 +176,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
               }
               ?>
             </table>
-            <button type="submit" class="addUserBtn" name="clearInbox_">Stergere Inbox
+            <button type="submit" class="addUserBtn" disable>
             </button>
           </div>
         </section>
@@ -239,6 +272,11 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
       </div>
       <div>
         <form id="hiddenFormRound" name="hiddenForm" method="post" action="admin.php">
+        <input type="hidden" name="stop_round_id" id="stop_round_id" value="">
+        </form>
+      </div>
+      <div>
+        <form id="hiddenFormRound" name="hiddenForm" method="post" action="admin.php">
         <input type="hidden" name="delete_round_id" id="delete_round_id" value="">
         </form>
       </div>
@@ -271,6 +309,17 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
           }
         }
 
+        function stopRound(elem)
+        {
+          if (confirm("Are you sure you want to stop this round?"))
+          {
+            var hiddenElement = document.getElementById("stop_round_id");
+            console.log(elem.id);
+            hiddenElement.value = elem.id;
+            hiddenElement.form.submit();
+          }
+        }
+
         function deleteMessage(elem)
         {
           if (confirm("Are you sure you want to delete this message?"))
@@ -294,10 +343,12 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
         tab = [], index;
         var users = document.getElementById("users");
         var rounds = document.getElementById("rounds");
+        var istoric = document.getElementById("history");
         var inbox = document.getElementById("inbox");
         var li0 = document.getElementById("adm0");
         var li1 = document.getElementById("adm1");
         var li2 = document.getElementById("adm2");
+        var li3 = document.getElementById("adm3");
           // add values to the array
           tab = [], index;
           for(var i = 0; i < items.length; i++){
@@ -315,8 +366,10 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                     li0.classList.add("sel");
                     li1.classList.remove("sel");
                     li2.classList.remove("sel");
+                    li3.classList.remove("sel");
                     users.classList.remove("hidden");
                     rounds.classList.add("hidden");
+                    istoric.classList.add("hidden");
 					          inbox.classList.add("hidden");
                     tab = [], index;
                     for(var i = 0; i < items.length; i++){
@@ -329,8 +382,10 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                     li0.classList.remove("sel");
                     li1.classList.add("sel");
                     li2.classList.remove("sel");
+                    li3.classList.remove("sel");
                     users.classList.add("hidden");
                     rounds.classList.remove("hidden");
+                    istoric.classList.add("hidden");
                     inbox.classList.add("hidden");
                     tab = [], index;
                     for(var i = 0; i < items.length; i++){
@@ -343,8 +398,26 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                     li0.classList.remove("sel");
                     li1.classList.remove("sel");
                     li2.classList.add("sel");
+                    li3.classList.remove("sel");
                     users.classList.add("hidden");
                     rounds.classList.add("hidden");
+                    istoric.classList.remove("hidden");
+                    inbox.classList.add("hidden");
+                    tab = [], index;
+                    for(var i = 0; i < items.length; i++){
+                       tab.push(items[i].innerHTML);
+                       console.log(items[i].innerHTML);
+                     }
+                  }
+                   else if (aux == 3)
+                  {
+                    li0.classList.remove("sel");
+                    li1.classList.remove("sel");
+                    li2.classList.remove("sel");
+                    li3.classList.add("sel");
+                    users.classList.add("hidden");
+                    rounds.classList.add("hidden");
+                    istoric.classList.add("hidden");
                     inbox.classList.remove("hidden");
                     tab = [], index;
                     for(var i = 0; i < items.length; i++){
@@ -354,7 +427,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                   }
               };
           }
-          
+
           var addRoundModal = document.getElementById('addRoundDialog');
           var addUserModal = document.getElementById('addUserDialog');
           window.addEventListener('click', outsideClick);

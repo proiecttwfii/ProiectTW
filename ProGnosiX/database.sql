@@ -16,7 +16,7 @@ CREATE TABLE `prognoze` (
   `id_runda` int(11) NOT NULL,
   `id_student` int(11) NOT NULL,
   `prognoza_student` double NOT NULL,
-  `data_prognoza` datetime NOT NULL,
+  `data_prognoza` date NOT NULL,
   PRIMARY KEY (`id_prognoza`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -33,6 +33,7 @@ CREATE TABLE `runde` (
   `id_materie` int(11) NOT NULL,
   `nume_runda` varchar(100) NOT NULL,
   `id_set_note` int(11) NOT NULL,
+  `runda_activa` tinyint(4) NOT NULL,
   PRIMARY KEY (`id_runda`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -51,7 +52,7 @@ CREATE TABLE `inbox` (
   `an` int(11) NOT NULL,
   `grupa` varchar(30) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `data_mesaj` datetime NOT NULL,
+  `data_mesaj` date NOT NULL,
   PRIMARY KEY (`id_mesaj`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -98,7 +99,7 @@ INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`
 INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (6,4,5,6,'2018-09-20');
 INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (7,4,1,9,'2018-08-20');
 
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`) VALUES (1,15,'Test 1 ',2);
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`) VALUES (2,17,'Test 1',3);
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`) VALUES (3,19,'Eseu',4);
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`) VALUES (4,17,'Test 2',5);
+INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`) VALUES (1,15,'Test 1 ',2, 1);
+INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`) VALUES (2,17,'Test 1',3, 0);
+INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`) VALUES (3,19,'Eseu',4, 1);
+INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`) VALUES (4,17,'Test 2',5, 0);
