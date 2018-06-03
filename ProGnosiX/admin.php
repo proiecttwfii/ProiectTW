@@ -170,7 +170,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                 <th></th>
               </tr>
               <?php
-              $results = $mysqli->query("SELECT * FROM inbox") or die($mysqli->error());
+              $results = $mysqli->query("SELECT * FROM inbox ORDER BY data_mesaj desc") or die($mysqli->error());
               while ($row = $results->fetch_assoc()) {
                 echo "<tr\><td>".$row["email"]."</td><td>".$row["nume"]." ".$row["prenume"]."</td><td>".$row["an"]."</td><td>".$row["grupa"]."</td><td>".$row["data_mesaj"]."</td><td id=\"".$row["id_mesaj"]."\" onclick=\"deleteMessage(this)\"></td></tr>";
               }
