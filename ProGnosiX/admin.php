@@ -39,6 +39,10 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
       {
         require 'delete_message.php';
       }
+      elseif(isset($_POST["clearInbox"]))
+      {
+        require 'clear_inbox.php';
+      }
     }
      ?>
 
@@ -139,7 +143,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
               }
               ?>
             </table>
-            <button type="button" class="addUserBtn" onclick="clearInbox()">Stergere Inbox
+            <button type="submit" class="addUserBtn" name="clearInbox_">Stergere Inbox
             </button>
           </div>
         </section>
@@ -171,7 +175,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
               <p>
                 Incarca notele originale: <input type="file" name="fileToUpload" id="fileToUpload" required>
               </p>
-          <button type="submit" class="button_2" name="creare_runda" onclick="creare_runda()">Creare</button>
+          <button type="submit" class="button_2" name="creare_runda">Creare</button>
         </form>
         </div>
       </div>
@@ -278,9 +282,6 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
           }
         }
 
-      function creare_runda() {
-         alert("I am an alert box!");
-      }
 
         function addRound(){
           document.getElementById('addRoundDialog').style.display='block';

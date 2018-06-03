@@ -5,9 +5,8 @@ $message_id = $mysqli->escape_string($_POST['delete_message_id']);
 
 $sql = $mysqli->query("DELETE FROM inbox WHERE id_mesaj='$message_id'");
 
-if ($sql)
+if (!$sql)
+{
   $message = "Mesajul a fost sters.";
-else
-  $message = "Mesajul nu a putut fi sters.";
-
-echo "<script type='text/javascript'>alert('$message'); </script>";
+  echo "<script type='text/javascript'>alert('$message'); </script>";
+}
