@@ -5,6 +5,9 @@ $round_id = $mysqli->escape_string($_POST['delete_round_id']);
 
 $sql = $mysqli->query("DELETE FROM runde WHERE id_runda='$round_id'");
 
-if($sql){
-    echo "Deleted";
-}
+if ($sql)
+  $message = "Runda a fost stearsa.";
+else
+  $message = "Runda nu poate fi stearsa.";
+
+echo "<script type='text/javascript'>alert('$message'); </script>";

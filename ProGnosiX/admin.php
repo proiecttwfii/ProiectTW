@@ -230,7 +230,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
       </div>
       <div>
         <form id="hiddenFormUser" name="hiddenForm" method="post" action="admin.php">
-        <input type="hidden" name="delete_round_id" id="delete_round_id" value="">
+        <input type="hidden" name="delete_user_id" id="delete_user_id" value="">
         </form>
       </div>
       <div>
