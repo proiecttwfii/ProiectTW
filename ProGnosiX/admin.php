@@ -27,9 +27,13 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
       {
         require 'insert_round.php';
       }
-      elseif (isset($_POST["hiddenInput"]))
+      elseif (isset($_POST["delete_user_id"]))
       {
         require 'delete_user.php';
+      }
+      elseif (isset($_POST["delete_round_id"]))
+      {
+        require 'delete_round.php';
       }
     }
      ?>
@@ -103,7 +107,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
                  $materie = $materii->fetch_assoc();
                  $prognoze_runde = $mysqli->query("SELECT COUNT(id_prognoza) as total FROM prognoze where id_runda = '$id_runda' ");
                  $count_particip = $prognoze_runde->fetch_assoc();
-                echo "<tr\><td>".$materie["nume_materie"]."</td><td>".$row["nume_runda"]." </td><td>".$materie["an"]."</td><td>".$count_particip["total"]."</td><td></td></tr>";
+                echo "<tr\><td>".$materie["nume_materie"]."</td><td>".$row["nume_runda"]." </td><td>".$materie["an"]."</td><td>".$count_particip["total"]."</td><td id=\"".$row["id_runda"]."\" onclick=\"deleteRound(this)\"></td></tr>";
               }
               ?>
             </table>
@@ -221,8 +225,13 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
 
       </div>
       <div>
-        <form id="hiddenForm" name="hiddenForm" method="post" action="admin.php">
-        <input type="hidden" name="hiddenInput" id="hiddenInput" value="">
+        <form id="hiddenFormUser" name="hiddenForm" method="post" action="admin.php">
+        <input type="hidden" name="delete_round_id" id="delete_round_id" value="">
+        </form>
+      </div>
+      <div>
+        <form id="hiddenFormRound" name="hiddenForm" method="post" action="admin.php">
+        <input type="hidden" name="delete_round_id" id="delete_round_id" value="">
         </form>
       </div>
     </div>
@@ -232,7 +241,18 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
         {
           if (confirm("Are you sure you want to delete this student?"))
           {
-            var hiddenElement = document.getElementById("hiddenInput");
+            var hiddenElement = document.getElementById("delete_user_id");
+            hiddenElement.value = elem.id;
+            hiddenElement.form.submit();
+          }
+        }
+
+        function deleteRound(elem)
+        {
+          if (confirm("Are you sure you want to delete this round?"))
+          {
+            var hiddenElement = document.getElementById("delete_round_id");
+            console.log(elem.id);
             hiddenElement.value = elem.id;
             hiddenElement.form.submit();
           }
