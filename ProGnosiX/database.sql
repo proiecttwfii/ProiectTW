@@ -34,6 +34,7 @@ CREATE TABLE `runde` (
   `nume_runda` varchar(100) NOT NULL,
   `id_set_note` int(11) NOT NULL,
   `runda_activa` tinyint(4) NOT NULL,
+  `data_stop_runda` date NOT NULL,
   PRIMARY KEY (`id_runda`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -99,7 +100,7 @@ INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`
 INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (6,4,5,6,'2018-09-20');
 INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (7,4,1,9,'2018-08-20');
 
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`) VALUES (1,15,'Test 1 ',2, 1);
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`) VALUES (2,17,'Test 1',3, 0);
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`) VALUES (3,19,'Eseu',4, 1);
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`) VALUES (4,17,'Test 2',5, 0);
+INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`,`data_stop_runda`) VALUES (1,15,'Test 1 ',2, 1, '2018-03-20');
+INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`,`data_stop_runda`) VALUES (2,17,'Test 1',3, 0, '2018-03-20');
+INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`,`data_stop_runda`) VALUES (3,19,'Eseu',4, 1, '2018-03-20');
+INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`,`data_stop_runda`) VALUES (4,17,'Test 2',5, 0, '2018-03-20');
