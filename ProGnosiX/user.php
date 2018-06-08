@@ -111,14 +111,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
         <section id="subjects" class="hidden">
           <?php
+
           $result_runde = $mysqli->query("SELECT * FROM runde INNER JOIN materie ON runde.id_materie = materie.id_materie WHERE materie.an = '$an' and materie.semestru = '$semestru'") or die($mysqli->error());
+
           $i = 0;
           while ($row = $result_runde->fetch_assoc()) {
-            $i++;
-             $materii = $mysqli->query("SELECT * FROM materie where id_materie = ".$row["id_materie"]." ");
-             $materie = $materii->fetch_assoc();
-             echo "<p id=\"".$i."\" class=\"subjects\" >".$materie["nume_materie"]." - ".$row["nume_runda"]."</p>";
-             $vec[$i] = array($materie["nume_materie"], $row["nume_runda"], $row["id_runda"]);
+            $result = $mysqli->query("SELECT * FROM prognoze WHERE id_runda = ".$row["id_runda"]." and id_student = '$id'") or die($mysqli->error());
+            if ( $result->num_rows == 0 ) {
+               $i++;
+               $materii = $mysqli->query("SELECT * FROM materie where id_materie = ".$row["id_materie"]." ");
+               $materie = $materii->fetch_assoc();
+               echo "<p id=\"".$i."\" class=\"subjects\" >".$materie["nume_materie"]." - ".$row["nume_runda"]."</p>";
+               $vec[$i] = array($materie["nume_materie"], $row["nume_runda"], $row["id_runda"]);
+            }
           }
           ?>
         </section>

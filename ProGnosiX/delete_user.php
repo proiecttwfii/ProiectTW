@@ -7,6 +7,6 @@ $sql = $mysqli->query("DELETE FROM accounts WHERE id='$user_id'");
 
 if (!$sql)
 {
-  $message = "Studentul a fost sters sters din baza de date.";
+  $message = "Studentul nu a fost sters sters din baza de date.";
   echo "<script type='text/javascript'>alert('$message'); </script>";
 }

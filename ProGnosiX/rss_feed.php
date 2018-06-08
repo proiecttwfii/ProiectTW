@@ -11,7 +11,7 @@
     $rssfeed .= '<copyright>Copyright (C) 2009 ProGnosiX.com</copyright>';
 
 
-    $runde = $mysqli->query("SELECT * FROM runde WHERE runda_activa =0 ORDER BY data_stop_runda DESC");
+    $runde = $mysqli->query("SELECT * FROM runde WHERE runda_activa = 0 ORDER BY data_stop_runda DESC");
 
     while ($row = mysql_fetch_array($runde))
     {

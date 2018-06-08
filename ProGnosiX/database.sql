@@ -34,7 +34,7 @@ CREATE TABLE `runde` (
   `nume_runda` varchar(100) NOT NULL,
   `id_set_note` int(11) NOT NULL,
   `runda_activa` tinyint(4) NOT NULL,
-  `data_stop_runda` date NOT NULL,
+  `data_stop_runda` date DEFAULT NULL,
   PRIMARY KEY (`id_runda`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

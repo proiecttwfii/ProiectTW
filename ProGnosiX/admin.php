@@ -176,7 +176,7 @@ if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
               }
               ?>
             </table>
-            <button type="submit" class="addUserBtn" disable>
+            <button type="submit" class="addUserBtn" disabled>
             </button>
           </div>
         </section>

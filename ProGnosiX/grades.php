@@ -13,6 +13,19 @@ session_start();
     <title>ProGnosiX | Punctaje</title>
     <link rel="stylesheet" href="./css/style.css">
   </head>
+  <?php
+  if($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    if(isset($_POST['generate_pdf']))
+    {
+      require 'generate_pdf.php';
+    }
+    else if(isset($_POST['generate_csv']))
+      {
+        require 'generate_csv.php';
+      }
+  }
+   ?>
   <body>
     <header>
       <div class="container">
@@ -54,28 +67,47 @@ session_start();
           </section>";
     }
     ?> -->
-    
+
     <section id="main">
       <div class="container">
         <article id="main-col-grades">
             <h1 class="page-title">Rezultate</h1>
             <ul id="services-grades">
-              <li>
-                <h3> <a href="date1.pdf" download="rezultate_sgbd">Rezultate SGBD Test 1</a></h3>
-              </li>
-              <li>
-                <h3> <a href="date1.pdf" download="rezultate_en">Rezultate Limba engleza Test 1</a></h3>
-              </li>
-              <li>
-                <h3> <a href="date1.pdf" download="rezultate_java1">Rezultate Java Tema 1</a></h3>
-              </li>
-              <li>
-                <h3> <a href="date1.pdf" download="rezultate_java2">Rezultate Java Tema 2</a></h3>
-              </li>
+              <form action="" method="post">
+                <input type="hidden" name="generate_id" id="generate_id" value="">
+
+              <?php
+              $result = $mysqli->query("SELECT * FROM runde WHERE runda_activa = 0") or die($mysqli->error());
+              while ($row = $result->fetch_assoc()) {
+                $id_runda = $row['id_runda'];
+                 $materii = $mysqli->query("SELECT * FROM materie where id_materie = ".$row["id_materie"]." ");
+                 $materie = $materii->fetch_assoc();
+                 echo "<li><h1><p>Rezultate ".$materie["nume_materie"]." - ".$row["nume_runda"]."</p>
+                 <button class=\"button_1\" name = \"generate_pdf\" type = \"submit\" id=\"$id_runda\" onclick=\"generare_pdf(this)\" >PDF</button>
+                 <button class=\"button_1\" name = \"generate_csv\" type = \"submit\" id=\"$id_runda\" onclick=\"generare_csv(this)\" >CSV</button>
+                 </h1></li>";
+              }
+              ?>
+              </form>
             </ul>
         </article>
       </div>
     </section>
+
+    <script type="text/javascript">
+        function generare_pdf(elem)
+        {
+            var hiddenElement = document.getElementById("generate_id");
+            hiddenElement.value = elem.id;
+            hiddenElement.form.submit();
+        }
+        function generare_csv(elem)
+        {
+            var hiddenElement = document.getElementById("generate_id");
+            hiddenElement.value = elem.id;
+            hiddenElement.form.submit();
+        }
+    </script>
 
     <footer>
       <p>The ProGnosiX Game, Copyright &copy; 2018</p>
