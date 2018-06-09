@@ -12,6 +12,8 @@ session_start();
   	<meta name="author" content="Acasandrei Beatrice, Simion Cosmin">
     <title>ProGnosiX | Punctaje</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="alternate" type="application/rss+xml"
+    href="./rss_feed.php" title="Rss Feed">
   </head>
   <?php
   if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -68,9 +70,12 @@ session_start();
     }
     ?> -->
 
+
+
     <section id="main">
       <div class="container">
         <article id="main-col-grades">
+          <h1 class="page-title"><a href="./rss_feed.php"><img src="./img/RSS.png" alt="Rss icon" style="width:100px;height:100px;"> </a> </h1>
             <h1 class="page-title">Rezultate</h1>
             <ul id="services-grades">
               <form action="" method="post">
