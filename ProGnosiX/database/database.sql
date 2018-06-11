@@ -64,6 +64,15 @@ INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`
 INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (5,'mirela.popa@info.uaic.ro','123','Popa','Mirela',2,2,'B1',0);
 INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (6,'andrei.aionanei@info.uaic.ro','123','Aioanei','Andrei',2,2,'B5',0);
 INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (7,'ioan.maria@info.uaic.ro','123','Maria','Ioan',2,2,'B4',0);
+INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (8,'horia.popa@info.uaic.ro','123','Popa','Horia',2,2,'B6',0);
+INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (9,'bucur.mihai@info.uaic.ro','123','Bucur','Mihai',2,2,'A1',0);
+INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (10,'dragomir.alexandru@info.uaic.ro','123','Dragomir','Alexandru',2,2,'A5',0);
+INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (11,'silviu.barbu@info.uaic.ro','123','Barbu','Silviu',2,2,'A2',0);
+INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (12,'ion.paraschiv@info.uaic.ro','123','Paraschiv','Ion',2,2,'B2',0);
+INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (13,'marius.cristian@info.uaic.ro','123','Cristian','Marius',2,2,'A3',0);
+INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (14,'marian.nastase@info.uaic.ro','123','Nastase','Marian',2,2,'A6',0);
+INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (15,'flavio.marinescu@info.uaic.ro','123','Marinescu','Flavio',2,2,'A5',0);
+INSERT INTO `accounts` (`id`,`email`,`parola`,`nume`,`prenume`,`an`,`semestru`,`grupa`,`admin`) VALUES (16,'patriciu.stefanel@info.uaic.ro','123','Patriciu','Stefanel',2,2,'B4',0);
 
 INSERT INTO `inbox` (`id_mesaj`,`nume`,`prenume`,`an`,`grupa`,`email`,`data_mesaj`) VALUES (1,'Zaharia','Rober',2,'A3','robert.zaharia@info.uaic.ro','2018-05-23');
 INSERT INTO `inbox` (`id_mesaj`,`nume`,`prenume`,`an`,`grupa`,`email`,`data_mesaj`) VALUES (2,'Eminovici','Andreea',2,'B2','andreea.eminovici@info.uaic.ro','2018-04-13');
@@ -92,15 +101,35 @@ INSERT INTO `materie` (`id_materie`,`nume_materie`,`an`,`semestru`) VALUES (19,'
 INSERT INTO `materie` (`id_materie`,`nume_materie`,`an`,`semestru`) VALUES (20,'Sport',2,2);
 INSERT INTO `materie` (`id_materie`,`nume_materie`,`an`,`semestru`) VALUES (21,'Programare competitiva IV',2,2);
 
-INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (1,1,1,7,'2018-03-20');
-INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (2,1,2,5,'2018-06-20');
-INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (3,2,1,8.5,'2018-06-20');
-INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (4,3,3,9,'2018-09-20');
-INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (5,3,1,8,'2018-09-20');
-INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (6,4,5,6,'2018-09-20');
-INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (7,4,1,9,'2018-08-20');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (1,1,1,5,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (2,1,3,7,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (3,1,4,8,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (4,1,5,5,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (5,1,6,6,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (6,1,7,7,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (7,1,8,8,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (8,1,9,5,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (9,1,10,6,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (10,1,11,5,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (11,1,12,8,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (12,1,13,7,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (13,1,14,9,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (14,1,15,7,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (15,1,16,9,'2018-06-11');
 
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`,`data_stop_runda`) VALUES (1,15,'Test 1 ',2, 1, '2018-03-20');
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`,`data_stop_runda`) VALUES (2,17,'Test 1',3, 0, '2018-03-20');
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`,`data_stop_runda`) VALUES (3,19,'Eseu',4, 1, '2018-03-20');
-INSERT INTO `runde` (`id_runda`,`id_materie`,`nume_runda`,`id_set_note`, `runda_activa`,`data_stop_runda`) VALUES (4,17,'Test 2',5, 0, '2018-03-20');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (16,2,1,5,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (17,2,3,7,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (18,2,4,8,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (19,2,5,5,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (20,2,6,6,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (21,2,7,7,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (22,2,8,8,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (23,2,9,5,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (24,2,10,6,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (25,2,11,5,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (26,2,12,8,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (27,2,13,7,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (28,2,14,9,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (29,2,15,7,'2018-06-11');
+INSERT INTO `prognoze` (`id_prognoza`,`id_runda`,`id_student`,`prognoza_student`,`data_prognoza`) VALUES (30,2,16,9,'2018-06-11');
+

@@ -72,7 +72,7 @@ session_start();
 
 
 
-    <section id="main">
+    <section id="mainGrades">
       <div class="container">
         <article id="main-col-grades">
           <h1 class="page-title"><a href="./rss_feed.php"><img src="./img/RSS.png" alt="Rss icon" style="width:100px;height:100px;"> </a> </h1>
