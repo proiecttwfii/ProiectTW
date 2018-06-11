@@ -27,13 +27,5 @@ else { // Email doesn't already exist in a database, proceed...
     else {
         $message = "Nu s-a putut adauga in inbox!";
         echo "<script type='text/javascript'>alert('$message'); </script>";
-        echo "<script type='text/javascript'>alert('$nume_user'); </script>";
-        echo "<script type='text/javascript'>alert('$prenume_user'); </script>";
-        echo "<script type='text/javascript'>alert('$an_user'); </script>";
-        echo "<script type='text/javascript'>alert('$grupa_user'); </script>";
-        echo "<script type='text/javascript'>alert('$email_user'); </script>";
-        echo "<script type='text/javascript'>alert('$date'); </script>";
-
-
     }
 }

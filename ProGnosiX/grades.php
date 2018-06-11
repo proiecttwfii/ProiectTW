@@ -82,7 +82,7 @@ session_start();
                 <input type="hidden" name="generate_id" id="generate_id" value="">
 
               <?php
-              $result = $mysqli->query("SELECT * FROM runde WHERE runda_activa = 0") or die($mysqli->error());
+              $result = $mysqli->query("SELECT * FROM runde WHERE runda_activa = 0 order by data_stop_runda desc") or die($mysqli->error());
               while ($row = $result->fetch_assoc()) {
                 $id_runda = $row['id_runda'];
                  $materii = $mysqli->query("SELECT * FROM materie where id_materie = ".$row["id_materie"]." ");

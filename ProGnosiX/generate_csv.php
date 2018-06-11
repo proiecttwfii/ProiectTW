@@ -1,16 +1,22 @@
 <?php
      $id_runda = $mysqli->escape_string($_POST['generate_id']);
      header('Content-Type: text/csv; charset=utf-8');
-     header('Content-Disposition: attachment; filename=data.csv');
-     //$filename = "members_" . date('Y-m-d') . ".csv";
-     //header('Content-Disposition: attachment; filename="' . $filename . '";');
+     $result = $mysqli->query("SELECT * FROM runde WHERE id_runda = '$id_runda'") or die($mysqli->error());
+     $row = $result->fetch_assoc();
+     $nume_runda = $row["nume_runda"];
+     $materii = $mysqli->query("SELECT * FROM materie where id_materie = ".$row["id_materie"]." ");
+     $materie = $materii->fetch_assoc();
+     $nume_materie = $materie["nume_materie"];
+     //header('Content-Disposition: attachment; filename=data.csv');
+     $filename = "Rezultate_" . $nume_runda . "_" . $nume_materie . ".csv";
+     header('Content-Disposition: attachment; filename="' . $filename . '";');
 
      $output = fopen("php://output", "w");
      ob_end_clean();
      fputcsv($output, array('Grupa', 'Nume, Prenume', 'Nota initiala', 'Prognoza', 'Nota finala'));
 
-     $result = $mysqli->query("SELECT * FROM runde WHERE id_runda = '$id_runda'") or die($mysqli->error());
-     $row = $result->fetch_assoc();
+     // $result = $mysqli->query("SELECT * FROM runde WHERE id_runda = '$id_runda'") or die($mysqli->error());
+     // $row = $result->fetch_assoc();
      $id_set_note = $row["id_set_note"];
 
      $result = $mysqli->query("SELECT * FROM prognoze WHERE id_runda = '$id_runda'") or die($mysqli->error());

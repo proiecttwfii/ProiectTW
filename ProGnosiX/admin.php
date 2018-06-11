@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
-require 'db.php';
+ob_start();
 session_start();
+require 'db.php';
 if(!$_SESSION['logged_in'] or ($_SESSION['logged_in'] && !$_SESSION['admin'])) {
   header("location:index.php");
   die();

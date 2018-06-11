@@ -55,7 +55,7 @@
 
     $pdf->SetFont('Arial','',9);
     $pdf->SetDrawColor(0,0,0);
-    // 
+    //
     // $pdf->Cell(30,5,$id_runda,1,0);
     // $pdf->Cell(70,5,$id_runda,1,0);
     // $pdf->Cell(30,5,'sdsf',1,0);
@@ -83,11 +83,18 @@
        $nota = $note->fetch_assoc();
        $nota_initiala = $nota['valoare_nota'];
 
+       if ($nota_initiala == $prognoza_student || abs($nota_initiala - $prognoza_student) <= 0.20) {
+            $nota_finala = $nota_initiala + 0.05 * $nota_initiala;
+          }
+       else {
+            $nota_finala = (int)$nota_initiala - 0.05 * (int)$nota_initiala;
+       }
+
        $pdf->Cell(30,5,$grupa,1,0);
        $pdf->Cell(70,5,$nume . ' ' . $prenume,1,0);
        $pdf->Cell(30,5,$nota_initiala,1,0);
        $pdf->Cell(30,5,$prognoza_student,1,0);
-       $pdf->Cell(30,5,$nota_initiala + 1, 1,1);
+       $pdf->Cell(30,5,$nota_finala, 1,1);
 
        // $pdf->Cell(30,5,'hello','LR',0);
        // $pdf->Cell(70,5,'hell0121','LR',0);
