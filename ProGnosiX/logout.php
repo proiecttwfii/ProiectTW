@@ -1,5 +1,5 @@
 <?php
-/* Log out process, unsets and destroys session variables */
+/* Procesul de delogare */
 session_start();
 $_SESSION['logged_in'] == 0;
 session_unset();
