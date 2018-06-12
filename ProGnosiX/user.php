@@ -103,7 +103,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
              $runda = $runde->fetch_assoc();
              $materii = $mysqli->query("SELECT * FROM materie where id_materie = ".$runda["id_materie"]." ");
              $materie = $materii->fetch_assoc();
-             echo "<p class=\"activity\"> ".$row["data_prognoza"]." - Prognoză - ".$materie["nume_materie"]." - ".$runda["nume_runda"]." - Nota: ".$row["prognoza_student"]."</p>";
+             echo "<p class=\"activity\"> ".$row["data_prognoza"]." - ".$materie["nume_materie"]." - ".$runda["nume_runda"]." - Prognoză: ".$row["prognoza_student"]."</p>";
           }
           ?>
         </section>

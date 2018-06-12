@@ -49,6 +49,14 @@ $pdf->SetDrawColor(0,0,0); // Linii negre
 $result = $mysqli->query("SELECT * FROM runde WHERE id_runda = '$id_runda'") or die($mysqli->error());
 $row = $result->fetch_assoc();
 $id_set_note = $row["id_set_note"];
+$nume_runda = $row["nume_runda"];
+$id_materie = $row["id_materie"];
+$result = $mysqli->query("SELECT * FROM materie WHERE id_materie = '$id_materie'") or die($mysqli->error());
+$r = $result->fetch_assoc();
+$nume_materie = $r["nume_materie"];
+
+$pdf->SetTitle($nume_materie . ' ' . $nume_runda);
+
 
 $result = $mysqli->query("SELECT * FROM prognoze WHERE id_runda = '$id_runda'") or die($mysqli->error());
 while ($row = $result->fetch_assoc()) {
