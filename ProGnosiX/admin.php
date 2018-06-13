@@ -68,7 +68,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     </nav>
 
     <section id="users">
-      <div style="overflow-x:auto;">
+      <div style="overflow-x:auto;" id="studentsTable">
         <table class="adminTable">
           <tr>
             <th>Nume</th>
@@ -152,7 +152,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
           <tr>
             <th>Email</th>
             <th>Nume</th>
-
             <th>An</th>
             <th>Grupa</th>
             <th>Data</th>
@@ -266,9 +265,39 @@ function deleteStudent(elem)
 {
   if (confirm("Are you sure you want to delete this student?"))
   {
-    var hiddenElement = document.getElementById("delete_user_id");
-    hiddenElement.value = elem.id;
-    hiddenElement.form.submit();
+    var ajaxRequestDelRound;  // The variable that makes Ajax possible!
+
+    try {
+       // Opera 8.0+, Firefox, Safari
+       ajaxRequestDelRound = new XMLHttpRequest();
+    }catch (e) {
+       // Internet Explorer Browsers
+       try {
+          ajaxRequestDelRound = new ActiveXObject("Msxml2.XMLHTTP");
+       }catch (e) {
+          try{
+             ajaxRequestDelRound = new ActiveXObject("Microsoft.XMLHTTP");
+          }catch (e){
+             // Something went wrong
+             alert("Your browser broke!");
+             return false;
+          }
+       }
+    }
+
+  // Create a function that will receive data
+  // sent from the server and will update
+  // div section in the same page.
+
+    ajaxRequestDelRound.onreadystatechange = function(){
+       if(ajaxRequestDelRound.readyState == 4){
+          var ajaxDisplay = document.getElementById('studentsTable');
+          ajaxDisplay.innerHTML = ajaxRequestDelRound.responseText;
+       }
+    }
+
+  ajaxRequestDelRound.open("GET", "delete_user.php?delete_user_id=" + elem.id, true);
+  ajaxRequestDelRound.send(null);
   }
 }
 
