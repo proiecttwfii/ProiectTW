@@ -32,18 +32,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     require 'delete_user.php';
   }
-  elseif (isset($_POST["delete_round_id"]))
-  {
-    require 'delete_round.php';
-  }
-  elseif (isset($_POST["stop_round_id"]))
-  {
-    require 'stop_round.php';
-  }
-  elseif (isset($_POST["delete_message_id"]))
-  {
-    require 'delete_message.php';
-  }
   elseif(isset($_POST["clearInbox"]))
   {
     require 'clear_inbox.php';
@@ -103,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     </section>
 
     <section id="rounds" class="hidden">
-      <div style="overflow-x:auto;">
+      <div id="roundsTableDiv" style="overflow-x:auto;">
         <table class="adminTable" id="roundsTable">
           <tr>
             <th>Materie</th>
@@ -131,7 +119,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     </section>
 
     <section id="history" class="hidden">
-      <div style="overflow-x:auto;">
+      <div id="historyTable" style="overflow-x:auto;">
         <table class="adminTable">
           <tr>
             <th>Materie</th>
@@ -159,7 +147,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     </section>
 
     <section id="inbox" class="hidden">
-      <div style="overflow-x:auto;">
+      <div id="inboxTable" style="overflow-x:auto;">
         <table class="adminTable">
           <tr>
             <th>Email</th>
@@ -271,21 +259,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     <input type="hidden" name="delete_user_id" id="delete_user_id" value="">
   </form>
 </div>
-<div>
-  <form id="hiddenFormRound" name="hiddenForm" method="post" action="admin.php">
-    <input type="hidden" name="stop_round_id" id="stop_round_id" value="">
-  </form>
-</div>
-<div>
-  <form id="hiddenFormRound" name="hiddenForm" method="post" action="admin.php">
-    <input type="hidden" name="delete_round_id" id="delete_round_id" value="">
-  </form>
-</div>
-<div>
-  <form id="hiddenFormMessage" name="hiddenForm" method="post" action="admin.php">
-    <input type="hidden" name="delete_message_id" id="delete_message_id" value="">
-  </form>
-</div>
 </div>
 <script>
 
@@ -303,10 +276,39 @@ function deleteRound(elem)
 {
   if (confirm("Are you sure you want to delete this round?"))
   {
-    var hiddenElement = document.getElementById("delete_round_id");
-    console.log(elem.id);
-    hiddenElement.value = elem.id;
-    hiddenElement.form.submit();
+    var ajaxRequestDelRound;  // The variable that makes Ajax possible!
+
+    try {
+       // Opera 8.0+, Firefox, Safari
+       ajaxRequestDelRound = new XMLHttpRequest();
+    }catch (e) {
+       // Internet Explorer Browsers
+       try {
+          ajaxRequestDelRound = new ActiveXObject("Msxml2.XMLHTTP");
+       }catch (e) {
+          try{
+             ajaxRequestDelRound = new ActiveXObject("Microsoft.XMLHTTP");
+          }catch (e){
+             // Something went wrong
+             alert("Your browser broke!");
+             return false;
+          }
+       }
+    }
+
+  // Create a function that will receive data
+  // sent from the server and will update
+  // div section in the same page.
+
+    ajaxRequestDelRound.onreadystatechange = function(){
+       if(ajaxRequestDelRound.readyState == 4){
+          var ajaxDisplay = document.getElementById('historyTable');
+          ajaxDisplay.innerHTML = ajaxRequestDelRound.responseText;
+       }
+    }
+
+  ajaxRequestDelRound.open("GET", "delete_round.php?delete_round_id=" + elem.id, true);
+  ajaxRequestDelRound.send(null);
   }
 }
 
@@ -314,10 +316,39 @@ function stopRound(elem)
 {
   if (confirm("Are you sure you want to stop this round?"))
   {
-    var hiddenElement = document.getElementById("stop_round_id");
-    console.log(elem.id);
-    hiddenElement.value = elem.id;
-    hiddenElement.form.submit();
+    var ajaxRequestStopRound;  // The variable that makes Ajax possible!
+
+    try {
+       // Opera 8.0+, Firefox, Safari
+       ajaxRequestStopRound = new XMLHttpRequest();
+    }catch (e) {
+       // Internet Explorer Browsers
+       try {
+          ajaxRequestStopRound = new ActiveXObject("Msxml2.XMLHTTP");
+       }catch (e) {
+          try{
+             ajaxRequestStopRound = new ActiveXObject("Microsoft.XMLHTTP");
+          }catch (e){
+             // Something went wrong
+             alert("Your browser broke!");
+             return false;
+          }
+       }
+    }
+
+  // Create a function that will receive data
+  // sent from the server and will update
+  // div section in the same page.
+
+    ajaxRequestStopRound.onreadystatechange = function(){
+       if(ajaxRequestStopRound.readyState == 4){
+          var ajaxDisplay = document.getElementById('roundsTableDiv');
+          ajaxDisplay.innerHTML = ajaxRequestStopRound.responseText;
+       }
+    }
+
+  ajaxRequestStopRound.open("GET", "stop_round.php?stop_round_id=" + elem.id, true);
+  ajaxRequestStopRound.send(null);
   }
 }
 
@@ -325,10 +356,39 @@ function deleteMessage(elem)
 {
   if (confirm("Are you sure you want to delete this message?"))
   {
-    var hiddenElement = document.getElementById("delete_message_id");
-    console.log(elem.id);
-    hiddenElement.value = elem.id;
-    hiddenElement.form.submit();
+    var ajaxRequestDelMes;  // The variable that makes Ajax possible!
+
+    try {
+       // Opera 8.0+, Firefox, Safari
+       ajaxRequestDelMes = new XMLHttpRequest();
+    }catch (e) {
+       // Internet Explorer Browsers
+       try {
+          ajaxRequestDelMes = new ActiveXObject("Msxml2.XMLHTTP");
+       }catch (e) {
+          try{
+             ajaxRequestDelMes = new ActiveXObject("Microsoft.XMLHTTP");
+          }catch (e){
+             // Something went wrong
+             alert("Your browser broke!");
+             return false;
+          }
+       }
+    }
+
+  // Create a function that will receive data
+  // sent from the server and will update
+  // div section in the same page.
+
+    ajaxRequestDelMes.onreadystatechange = function(){
+       if(ajaxRequestDelMes.readyState == 4){
+          var ajaxDisplay = document.getElementById('inboxTable');
+          ajaxDisplay.innerHTML = ajaxRequestDelMes.responseText;
+       }
+    }
+
+  ajaxRequestDelMes.open("GET", "delete_message.php?delete_message_id=" + elem.id, true);
+  ajaxRequestDelMes.send(null);
   }
 }
 
