@@ -10,7 +10,7 @@ $date = date('Y/m/d');
 $sql = $mysqli->query("UPDATE runde SET runda_activa = '0', data_stop_runda = '$date' WHERE id_runda='$round_id'");
 if ( $sql ){
 
-  echo "<table class=\"adminTable\" id=\"roundsTable\">
+  $rounds =  "<table class=\"adminTable\" id=\"roundsTable\">
     <tr>
       <th>Materie</th>
       <th>Nota la</th>
@@ -27,12 +27,39 @@ if ( $sql ){
       $materie = $materii->fetch_assoc();
       $prognoze_runde = $mysqli->query("SELECT COUNT(id_prognoza) as total FROM prognoze where id_runda = '$id_runda' ");
       $count_particip = $prognoze_runde->fetch_assoc();
-      echo "<tr\><td>".$materie["nume_materie"]."</td><td>".$row["nume_runda"]." </td><td>".$materie["an"]."</td><td>".$count_particip["total"]."</td><td id=\"".$row["id_runda"]."\" onclick=\"stopRound(this)\"></td></tr>";
+      $rounds .=  "<tr\><td>".$materie["nume_materie"]."</td><td>".$row["nume_runda"]." </td><td>".$materie["an"]."</td><td>".$count_particip["total"]."</td><td id=\"".$row["id_runda"]."\" onclick=\"stopRound(this)\"></td></tr>";
     }
 
-    echo "</table>
+    $rounds .=  "</table>
     <button type=\"button\" class=\"addUserBtn\" onclick=\"addRound()\">Adaugare runda
     </button>";
+
+
+    $history = "  <table class=\"adminTable\">
+        <tr>
+          <th>Materie</th>
+          <th>Nota la</th>
+          <th>An</th>
+          <th>Nr. total participanti</th>
+          <th></th>
+        </tr>";
+
+    $results = $mysqli->query("SELECT * FROM runde where runda_activa = 0") or die($mysqli->error());
+    while ($row = $results->fetch_assoc()) {
+      $id = $row["id_materie"];
+      $id_runda = $row["id_runda"];
+      $materii = $mysqli->query("SELECT * FROM materie where id_materie = '$id'");
+      $materie = $materii->fetch_assoc();
+      $prognoze_runde = $mysqli->query("SELECT COUNT(id_prognoza) as total FROM prognoze where id_runda = '$id_runda' ");
+      $count_particip = $prognoze_runde->fetch_assoc();
+      $history .= "<tr\><td>".$materie["nume_materie"]."</td><td>".$row["nume_runda"]." </td><td>".$materie["an"]."</td><td>".$count_particip["total"]."</td><td id=\"".$row["id_runda"]."\" onclick=\"deleteRound(this)\"></td></tr>";
+    }
+
+    $history .= "</table>
+    <button type=\"button\" class=\"addUserBtn\" disabled>
+    </button>";
+
+    echo "$rounds | $history";
 }
 else {
   $message = "Runda nu a putut fi incheiata!";

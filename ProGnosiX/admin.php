@@ -371,8 +371,12 @@ function stopRound(elem)
 
     ajaxRequestStopRound.onreadystatechange = function(){
        if(ajaxRequestStopRound.readyState == 4){
-          var ajaxDisplay = document.getElementById('roundsTableDiv');
-          ajaxDisplay.innerHTML = ajaxRequestStopRound.responseText;
+          var ajaxDisplayR = document.getElementById('roundsTableDiv');
+          var ajaxDisplayH = document.getElementById('historyTable');
+          var parts = ajaxRequestStopRound.responseText.split('|');
+
+          ajaxDisplayR.innerHTML = parts[0];
+          ajaxDisplayH.innerHTML = parts[1];
        }
     }
 
