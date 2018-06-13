@@ -1,59 +1,56 @@
 <!DOCTYPE html>
-<!-- saved from url=(0031)http://scholarly.vernacular.io/ -->
 <html lang="en-GB">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta name="viewport" content="width=device-width">
-    <title>Documentatie ProGnosiX</title>
-	<link rel="stylesheet" href="./css/scholarly.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Scholarly HTML</title>
+  <link rel="stylesheet" href="./css/scholarly.css">
 </head>
 <body prefix="schema: http://schema.org/ xsd: http://www.w3.org/2001/XMLSchema# sa: https://ns.science.ai/">
-<header>
-    <p class="title">ProGnosiX</p>
-    <p class="subtitle">Documentatie</p>
-
-</header>
-<article id="what" typeof="schema:ScholarlyArticle" resource="#">
+  <header>
+    <p class="title">Proiectul ProGnosiX</p>
+    <p class="subtitle"></p>
+  </header>
+  <article id="what" typeof="schema:ScholarlyArticle" resource="#">
     <h1>ProGnosiX</h1>
+    <h2>Documentatie</h2>
     <section>
-        <ol>
-            <li property="schema:contributor" typeof="sa:ContributorRole">
-                <a property="schema:contributor" href="https://github.com/AcasandreiBeatrice" typeof="schema:Person">
-                    <span property="schema:givenName">Acasandrei</span>
-                    <span property="schema:familyName">Beatrice-Raluca</span>
-                </a>
-                <a href="http://scholarly.vernacular.io/#scienceai" property="sa:roleAffiliation" resource="http://science.ai/">a</a>
-            </li>
-            <li property="schema:contributor" typeof="sa:ContributorRole">
-                <a property="schema:contributor" href="https://github.com/cosmin-simion" typeof="schema:Person">
-                    <span property="schema:givenName">Simion</span>
-                    <span property="schema:familyName">Cosmin</span>
-                </a>
-                <a href="http://scholarly.vernacular.io/#scienceai" property="sa:roleAffiliation" resource="http://science.ai/">a</a>
-            </li>
-        </ol>
+      <ol>
+        <li property="schema:author" typeof="sa:ContributorRole">
+          <a property="schema:author" href="https://github.com/AcasandreiBeatrice" typeof="schema:Person">
+            <span property="schema:givenName">Beatrice</span>
+            <span property="schema:familyName">Acasandrei</span>
+          </a>
+        </li>
+
+        <li property="schema:contributor" typeof="sa:ContributorRole">
+          <a property="schema:contributor" href="https://github.com/cosmin-simion" typeof="schema:Person">
+            <span property="schema:givenName">Cosmin</span>
+            <span property="schema:familyName">Simion</span>
+          </a>
+        </li>
+      </ol>
     </section>
 
     <section typeof="sa:Subcategorii" id="cuprins">
-        <h2>Cuprins</h2>
-        <aside typeof="schema:WPSideBar">
-            <p>
-            <ul>
-                <li><a href="#descriereaProiectului">1. Descriere Proiect</a></li>
-                <li><a href="#etapeProiect">2. Etapele dezvoltarii proiectului</a></li>
-                <li><a href="#progresProiect">3. Progresul inregistrat</a></li>
-                <li><a href="#tehnologiieUtilizate">4. Tehnologii utilizate</a></li>
-                <li><a href="#serviciiUtilizate">5. Servicii utilizate</a></li>
-                <li><a href="#task">6. Task-urile echipei</a></li>
-            </ul>
+      <h2>Cuprins</h2>
+      <aside typeof="schema:WPSideBar">
+        <p>
+          <p><a href="#descriereaProiectului">1. Descriere Proiect</a></p>
+          <p><a href="#etapeProiect">2. Etapele dezvoltarii proiectului</a></p>
+          <p><a href="#progresProiect">3. Progresul inregistrat</a></p>
+          <p><a href="#tehnologiieUtilizate">4. Tehnologii utilizate</a></p>
+          <p><a href="#serviciiUtilizate">5. Servicii utilizate</a></p>
+          <p><a href="#task">6. Task-urile echipei</a></p>
         </aside>
-    </section>
+      </section>
+
+
     <section typeof="sa:Results" id="descriereaProiectului">
         <h2>1. Descriere Proiect</h2>
         <p>
             ProGnosiX este o aplicatie web dedicata studentilor si profesorilor Facultatii de Informatica Iasi. Aceasta propune o alternativa la sistemul de evaluare in care studentul insasi este implicat.
-			Mai exact acesta va avea posibilitatea de a-si estima notele de la anumite discipline avand astfel posibilitatea de a i se mari nota finala (in cazul in care isi face o autoevaluare exacta), dar 
+			Mai exact acesta va avea posibilitatea de a-si estima notele de la anumite discipline avand astfel posibilitatea de a i se mari nota finala (in cazul in care isi face o autoevaluare exacta), dar
 			in acelasi timp asumandu-si riscul ca nota finala sa fie scazuta (cazul in care studentul nu apreciaza corect nota sa).
 			Inregistrarea conturilor pentru studenti revine adminilor (care pot fi profesori), care ii asigneaza in anul corespunzator si le asociaza adresa de mail de la facultate.
 			Studentul va avea posibilitatea de a aprecia notele sale doar la materiile din anul si semestrul in care este inregistrat.
@@ -68,7 +65,7 @@
             <li>Creare pagini front-end</li>
             <li>Design back-end</li>
             <li>Modelare baza de date</li>
-			<li>Code refactoring</li>
+			      <li>Code refactoring</li>
             <li>Realizarea documentatiei si ghidului de utilizare</li>
         </ol>
     </section>
@@ -76,9 +73,8 @@
     <section id="progresProiect">
         <h2>3. Progresul inregistrat</h2>
         <blockquote>
-            <li><p><strong>Front-end</strong></p></li>
-            <li>Pagini create</li>
-			
+            <h3><li><strong>Front-end</strong></li></h3>
+
             <figure typeof="sa:Image2">
                 <img src="./img_doc/index.png" style="width:100%;display:inline">
                 <figcaption>
@@ -94,7 +90,7 @@
                     Pagina de profil a studentului.
                 </figcaption>
             </figure>
-			
+
             <figure typeof="sa:Image2">
                 <img src="./img_doc/results.png" style="width:100%;display:inline">
                 <figcaption>
@@ -102,7 +98,7 @@
                     Pagina cu rezultatele disponibile.
                 </figcaption>
             </figure>
-			
+
             <figure typeof="sa:Image2">
                 <img src="./img_doc/admin.png" style="width:100%;display:inline">
                 <figcaption>
@@ -110,7 +106,7 @@
                     Pagina admin cu cele 4 taburi (Studenti, Runde, Istoric, Inbox).
                 </figcaption>
             </figure>
-			
+
             <figure typeof="sa:Image2">
                 <img src="./img_doc/contact.png" style="width:100%;display:inline">
                 <figcaption>
@@ -121,42 +117,43 @@
         </blockquote>
 
         <blockquote>
-            <li><strong>Back-end</strong></li>
+            <h3><li><strong>Back-end</strong></li></h3>
             <p>Pe partea de back-end s-a folosit o baza de date care va contine script-uri de creare si populare a unor tabele.</p>
         </blockquote>
 
         <section id="progresProiect">
             <h2>5. Tehnologii utilizate</h2>
-            <blockquote><h3>1. HTML / CSS</h3>
+            <blockquote><h3>HTML / CSS</h3>
                 <ul><p>Pentru partea de front-end se foloseste html. Scopul HTML este mai degraba prezentarea informatiilor – paragrafe, fonturi, tabele etc. – decat descrierea semanticii
                     documentului. CSS este un standard pentru formatarea elementelor unui document HTML. Stilurile se pot atașa elementelor HTML prin intermediul unor fișiere externe.</p></ul></blockquote>
 
-            <blockquote><h3>2. PHP</h3>
+            <blockquote><h3>PHP</h3>
 
-                <ul><p>PHP este un limbaj de programare folosit inițial pentru a produce pagini web dinamice, este folosit pe scară largă în dezvoltarea paginilor și aplicațiilor web. 
+                <ul><p>PHP este un limbaj de programare folosit inițial pentru a produce pagini web dinamice, este folosit pe scară largă în dezvoltarea paginilor și aplicațiilor web.
 				Se folosește în principal înglobat în codul HTML.
                    </p></ul></blockquote>
 
-            <blockquote><h3>3. Wampserver</h3>
+            <blockquote><h3>Wampserver</h3>
                 <ul><p>Wampserver este un environment de dezvoltare web pentru sistemul de operare Windows care permite utilizatorului
 				sa creeze aplicatii web folosind PHP , baze de date MySQL si Apache. Baza de date poate fi gestionata usor utilizand PHPMyAdmin.]</p></ul></blockquote>
 
 
-            <blockquote><h3>4. Ajax</h3>
-                <ul><p>Ajax este o tehnică de programare pentru crearea de aplicații web interactive. 
+            <blockquote><h3>Ajax</h3>
+                <ul><p>Ajax este o tehnică de programare pentru crearea de aplicații web interactive.
 				Intenția este să facă paginile web să devină mai rapide și deci mai acceptate, prin schimbul în fundal al unor cantități mici de date cu serverul, astfel încât să nu fie nevoie ca pagina să fie reîncărcată la fiecare acțiune a utilizatorului.
 				Aceasta are ca scop creșterea interactivității, vitezei și ușurinței în utilizare a aplicațiilor web.</p></ul></blockquote>
-					
-            <blockquote><h3>4. MySQL</h3>
-                <ul><p>MySQL este componentă integrată a platformelor LAMP sau WAMP (Linux/Windows-Apache-MySQL-PHP/Perl/Python). 
+
+            <blockquote><h3>MySQL</h3>
+                <ul><p>MySQL este componentă integrată a platformelor LAMP sau WAMP (Linux/Windows-Apache-MySQL-PHP/Perl/Python).
 				Popularitatea sa ca aplicație web este strâns legată de cea a PHP-ului care este adesea combinat cu MySQL și denumit Duo-ul Dinamic.</p></ul></blockquote>
         </section>
 
 
-        <section id="serviciiUtilizate">
+        <section id="serviciiUtilizate1">
             <h2>6. Servicii utilizate</h2>
-            <blockquote><h3>GitHub</h3>
-                <p><ul>GitHub este un serviciu de gazduire web pentru proiecte de dezvoltare a software-ului care utilizeaza sistemul de control al versiunilor Git. GitHub ofera planuri
+            <blockquote>
+              <h3>GitHub</h3>
+                <p><ul><strong>GitHub</strong> este un serviciu de gazduire web pentru proiecte de dezvoltare a software-ului care utilizeaza sistemul de control al versiunilor Git. GitHub ofera planuri
                     tarifare pentru depozite private si conturi gratuite pentru proiecte open source. De asemenea, exista o optiune speciala, care este atribuita studentilor, unde au voie la 5
                     proiecte private fara sa existe un plan tarifar.</ul></p>
 
@@ -167,54 +164,33 @@
         <section id="task">
             <h2>7. Task-urile echipei</h2>
             <blockquote>
-                Lazar Mihaela:
+                Simion Cosmin
                 <ul>
-                    <li>Optimizare functii / proceduri din baza de date.</li>
-                    <li>Configurare server (cu framework-urile aferente: Spring, Hibernate)</li>
-                    <li>Creare arhitectura MVC pe partea de server .</li>
-                    <li>Cronjob pentru anunturile luate de pe Twitter.</li>
-                    <li>Functionalitatea de adaugare layere pe harta dupa date preluate cu Google Maps API & Air Pollution API.</li>
-                    <li>Functionalitatea de afisare anunturi dupa filtre + lazy loading.</li>
-                    <li>Functionalitatea de login si sign-up.</li>
-                    <li>Functionalitatea de adaugare anunturi</li>
-                    <li>Functionalitatea de vizualizare detalii despre un anunt.</li>
-                    <li>Functionalitatea de adaugare/trimitere mesaje catre user-ul ce a pus anuntul.</li>
-                    <li>Functionalitatea pentru admin (stergere useri, anunturi, mesaje).</li>
-                    <li>Creare serviciu Web (expunerea functionalitatii).</li>
+                    <li>Functionaliatatea de stergere student.</li>
+                    <li>Functionalitatea de stergere runda</li>
+                    <li>Functionalitatea de stergere a cererilor de inscriere</li>
+                    <li>Functionalitatea de oprire runda.</li>
+                    <li>Functionalitatea de afisare a datelor in pagini.</li>
+                    <li>RSS feed.</li>
+
                 </ul>
             </blockquote>
 
+
             <blockquote>
-                Podaru Rares:
+                Acasandrei Beatrice:
                 <ul>
-                    <li>Construirea functiilor PL/SQL din baza de date.</li>
-                    <li>Creare harta cu layere</li>
-                    <li>Optimizare functii/proceduri din baza de date.</li>
-                    <li>Controller pt actualizare cont user.</li>
+                    <li>Functionalitatea de login, logout.</li>
+                    <li>Functionalitatea de adaugare prognoze.</li>
+                    <li>Functionalitatea de adaugare studenti.</li>
+                    <li>Functionalitatea de adaugare runde, precum si preluare de date din csv, xml, json.</li>
+                    <li>Functionalitatea de trimitere a cererilor de inscriere.</li>
+                    <li>Functionalitatea de generare csv, pdf.</li>
+
                 </ul>
             </blockquote>
 
-            <blockquote>
-                Acasandrei Beatrice-Raluca:
-                <ul>
-                    <li>Construirea procedurilor PL/SQL din baza de date.</li>
-                    <li>Retusare pagini html.</li>
-                    <li>Populare baza de date.</li>
-                    <li>Cautare dupa oras din pagina homePage.html .</li>
-                    <li>Modal-uri pentru login, sign-up si mesaje corespunzatoare.</li>
-                    <li>Triggere PL/SQL.</li>
-                </ul>
-            </blockquote>
 
-            <blockquote>
-                Task-uri comune:
-                <ul>
-                    <li>Imbunatatirea design-ului aplicatiei.</li>
-                    <li>Mentenanta si imbunatatirea bazei de date</li>
-                    <li>Preluarea informatiilor de la API-ul Google Maps</li>
-                    <li>Design aplicatie (partea de UI).</li>
-                </ul>
-            </blockquote>
         </section>
 </article>
 

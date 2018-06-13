@@ -1,11 +1,23 @@
 <?php
 // Procesul de trimitere a unei cereri de inregistrare
 // real_escape_string pentru protejarea impotriva SQL injection
-$nume_user = $mysqli->real_escape_string($_POST['nume_contact']);
-$prenume_user = $mysqli->real_escape_string($_POST['prenume_contact']);
-$email_user = $mysqli->real_escape_string($_POST['email_contact']);
-$an_user = (int)$mysqli->real_escape_string($_POST['an_contact']);
-$grupa_user = $mysqli->real_escape_string($_POST['grupa_contact']);
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$db = 'prognosix';
+$mysqli = new mysqli($host, $user, $pass, $db) or die($mysqli->error);
+
+$nume_user = $_GET['nume_contact'];
+$prenume_user = $_GET['prenume_contact'];
+$email_user = $_GET['email_contact'];
+$an_user = $_GET['an_contact'];
+$grupa_user = $_GET['grupa_contact'];
+
+$nume_user = $mysqli->real_escape_string($nume_user);
+$prenume_user =  $mysqli->real_escape_string($prenume_user);
+$email_user =  $mysqli->real_escape_string($email_user);
+$an_user = (int)$mysqli->real_escape_string($an_user);
+$grupa_user =  $mysqli->real_escape_string($grupa_user);
 
 // Folosim prepare pentru a proteja importiva SQL injection
 if ($stmt = $mysqli->prepare("SELECT * FROM inbox WHERE email=?")) {

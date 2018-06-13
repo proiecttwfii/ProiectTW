@@ -41,13 +41,13 @@ session_start();
     </div>
   </header>
 
-  <?php
+  <!-- <?php
   if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     if (isset($_POST['add_request']))
     require 'add_request.php';
   }
-  ?>
+  ?> -->
 
   <!-- <section id="logging">
   <div class="container">
@@ -59,6 +59,61 @@ session_start();
 </form>
 </div>
 </section> -->
+
+<script language = "javascript" type = "text/javascript">
+   <!--
+      //Browser Support Code
+      function ajaxFunction(){
+         var ajaxRequest;  // The variable that makes Ajax possible!
+
+         try {
+            // Opera 8.0+, Firefox, Safari
+            ajaxRequest = new XMLHttpRequest();
+         }catch (e) {
+            // Internet Explorer Browsers
+            try {
+               ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch (e) {
+               try{
+                  ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+               }catch (e){
+                  // Something went wrong
+                  alert("Your browser broke!");
+                  return false;
+               }
+            }
+         }
+
+         // Create a function that will receive data
+         // sent from the server and will update
+         // div section in the same page.
+
+         ajaxRequest.onreadystatechange = function(){
+            if(ajaxRequest.readyState == 4){
+               var ajaxDisplay = document.getElementById('ajaxDiv');
+               ajaxDisplay.innerHTML = ajaxRequest.responseText;
+            }
+         }
+
+         // Now get the value from user and pass it to
+         // server script.
+
+         var nume_contact = document.getElementById('nume_contact').value;
+         var prenume_contact = document.getElementById('prenume_contact').value;
+         var an_contact = document.getElementById('an_contact').value;
+         var grupa_contact = document.getElementById('grupa_contact').value;
+         var email_contact = document.getElementById('email_contact').value;
+
+         var queryString = "?nume_contact=" + nume_contact ;
+
+         queryString +=  "&prenume_contact=" + prenume_contact + "&an_contact=" + an_contact;
+         queryString +=  "&grupa_contact=" + grupa_contact + "&email_contact=" + email_contact;
+
+         ajaxRequest.open("GET", "add_request.php" + queryString, true);
+         ajaxRequest.send(null);
+      }
+   //-->
+</script>
 
 <section id="main">
   <div class="container">
@@ -78,29 +133,29 @@ session_start();
         <form class="contact" method="post" autocomplete="on">
           <div>
             <label>Nume</label><br>
-            <input type="text" placeholder="Nume" name="nume_contact" required>
+            <input type="text" placeholder="Nume" id="nume_contact" required>
           </div>
           <div>
             <label>Prenume</label><br>
-            <input type="text" placeholder="Prenume" name="prenume_contact" required>
+            <input type="text" placeholder="Prenume" id="prenume_contact" required>
           </div>
           <div>
             <label>An</label><br>
-            <input type="text" placeholder="An" name="an_contact" required>
+            <input type="text" placeholder="An" id="an_contact" required>
           </div>
           <div>
             <label>Grupa</label><br>
-            <input type="text" placeholder="Grupa" name="grupa_contact" required>
+            <input type="text" placeholder="Grupa" id="grupa_contact" required>
           </div>
           <div>
             <label>Email</label><br>
-            <input type="email" placeholder="Adresa de email" name="email_contact" required>
+            <input type="email" placeholder="Adresa de email" id="email_contact" required>
           </div>
           <div>
             <label></label><br>
           </div>
 
-          <button class="button_1" type="submit" name="add_request">Trimite</button>
+          <button class="button_1"  onclick = 'ajaxFunction()'>Trimite</button>
         </form>
       </div>
     </aside>
