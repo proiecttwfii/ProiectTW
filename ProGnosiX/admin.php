@@ -55,14 +55,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
   <div id="w">
     <div id="content" class="clearfix">
-      <h1>Admin page</h1>
+      <h1>Pagina admin</h1>
 
       <nav id="profiletabs">
         <ul id = "admlist">
           <li><a href="#users"  id="adm0" class="sel" >Studenti</a></li>
           <li><a href="#rounds" id="adm1" >Runde</a></li>
           <li><a href="#istoric"id="adm2" >Istoric</a></li>
-          <li><a href="#inbox"  id="adm3" >Inbox</a></li>
+          <li><a href="#inbox"  id="adm3" >Cereri de inscrieri</a></li>
         </ul>
       </ul>
     </nav>
