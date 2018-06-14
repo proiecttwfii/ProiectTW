@@ -78,7 +78,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             <th></th>
           </tr>
           <?php
-          // $results = $mysqli->query("SELECT distinct id_student as smt FROM prognoze") or die($mysqli->error());
           $results = $mysqli->query("SELECT * FROM accounts WHERE admin != 1") or die($mysqli->error());
           while ($row = $results->fetch_assoc()) {
             echo "<tr\><td>".$row["nume"]." ".$row["prenume"]."</td><td>".$row["an"]."</td><td>".$row["grupa"]."</td><td>".$row["email"]."</td><td id=\"".$row["id"]."\" onclick=\"deleteStudent(this)\"></td></tr>";

@@ -6,6 +6,9 @@
   header("location:index.php");
   die();
 }
+else if ($_SESSION['logged_in'] && $_SESSION['admin']) {
+  header("location:admin.php");
+}
 else {
     $email = $_SESSION['email'];
 }

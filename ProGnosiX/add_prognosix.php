@@ -25,6 +25,6 @@ if ($status) {
 }
 // Inserarea a esuat
 else {
-  $message = "A intervenit o eroare! Va rogam sa incercati mai tarziu.";
+  $message = "A intervenit o eroare! Va rugam sa incercati mai tarziu.";
   echo "<script type='text/javascript'>alert('$message'); </script>";
 }

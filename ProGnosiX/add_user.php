@@ -11,7 +11,6 @@ $parola_user = $mysqli->real_escape_string($_POST['parola_user']);
 $result = $mysqli->query("SELECT * FROM accounts WHERE email = '$email_user'") or die($mysqli->error());
 // Daca numarul de linii rezultate e 1 inseamna ca userul exista in BD
 if ( $result->num_rows > 0 ) {
-    $_SESSION['message'] = 'User with this email already exists!';
     $message = "Exista deja un student cu acest email.";
     echo "<script type='text/javascript'>alert('$message'); </script>";
 }
